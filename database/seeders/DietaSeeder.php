@@ -12,8 +12,13 @@ class DietaSeeder extends Seeder
      */
     public function run(): void
     {
+        $usuariosIds = DB::table('usuarios')->pluck('id');
+
         DB::table('dietas')->insert([
-            'tipo' => fake()->randomElement(['equilibrada','deficit','calorica','personalizada'])
+            'tipo' => fake()->randomElement(['equilibrada','deficit','calorica','personalizada']),
+            'usuario_id' => fake()->randomElement($usuariosIds),
+            'created_at' => date_create(),
+            'updated_at' => date_create(),
         ]);
     }
 }

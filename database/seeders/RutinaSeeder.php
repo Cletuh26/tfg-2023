@@ -12,8 +12,13 @@ class RutinaSeeder extends Seeder
      */
     public function run(): void
     {
+        $usuariosIds = DB::table('usuarios')->pluck('id');
+
         DB::table('rutinas')->insert([
-            'tipo' => fake()->randomElement(['equilibrada','definicion','volumen'])
+            'tipo' => fake()->randomElement(['equilibrada','definicion','volumen']),
+            'usuario_id' => fake()->randomElement($usuariosIds),
+            'created_at' => date_create(),
+            'updated_at' => date_create(),
         ]);
     }
 }

@@ -15,12 +15,15 @@ class EjercicioSeeder extends Seeder
         DB::table('ejercicios')->insert([
             'nombre' => fake()->name(),
             'descripcion' => fake()->text(),
+            'imagen' => fake()->image(),
             'tipo' => fake()->randomElement(['pierna','pecho','espalda','hombro','brazo','gluteos']),
             'tipo_ejercicio' => fake()->randomElement(['1','2','3','4']),
-            'series' => fake()->random_int(1,5),
-            'repeticiones' => fake()->random_int(8,12),
-            'duracion' => fake()->random_int(1,60),
-            'descanso' => fake()->random_int(15,30)
+            'series' => fake()->numberBetween(1,5),
+            'repeticiones' => fake()->numberBetween(8,12),
+            'duracion' => fake()->numberBetween(1,60),
+            'descanso' => fake()->numberBetween(15,30),
+            'created_at' => date_create(),
+            'updated_at' => date_create(),
         ]);
     }
 }

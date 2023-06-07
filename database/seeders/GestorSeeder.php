@@ -15,7 +15,9 @@ class GestorSeeder extends Seeder
     {
         DB::table('gestores')->insert([
             'nick' => fake()->name('male'),
-            'contrasenya' => Hash::make('password')
+            'contrasenya' => Hash::make('password'),
+            'created_at' => date_create(),
+            'updated_at' => date_create(),
         ]);
     }
 }

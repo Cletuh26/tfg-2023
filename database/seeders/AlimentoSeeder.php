@@ -15,6 +15,7 @@ class AlimentoSeeder extends Seeder
         DB::table('alimentos')->insert([
             'nombre' => fake()->name(),
             'descripcion' => fake()->text(),
+            'imagen' => fake()->image(),
             'tipo' => fake()->randomElement(['comida','bebida','otro']),
             'datos' => fake()->text()
         ]);
