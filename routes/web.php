@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Controllers\DietaController;
+use App\Http\Controllers\EjercicioController;
+use App\Http\Controllers\RutinaController;
+use App\Http\Controllers\UsuarioController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,14 +25,7 @@ Route::get('/login', function(){
     return view('login');
 });
 
-Route::get('/rutinas', function(){
-    return view('rutinas.index');
-});
-
-Route::get('/dietas', function(){
-    return view('dietas.index');
-});
-
-Route::get('/ejercicios', function(){
-    return view('ejercicios.index');
-});
+Route::resource('usuarios', UsuarioController::class);
+Route::resource('rutinas', RutinaController::class);
+Route::resource('dietas', DietaController::class);
+Route::resource('ejercicios', EjercicioController::class);
