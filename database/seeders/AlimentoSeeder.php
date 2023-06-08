@@ -17,7 +17,9 @@ class AlimentoSeeder extends Seeder
             'descripcion' => fake()->text(),
             'imagen' => fake()->image(),
             'tipo' => fake()->randomElement(['comida','bebida','otro']),
-            'datos' => fake()->text()
+            'datos' => fake()->text(),
+            'created_at' => date_create(),
+            'updated_at' => date_create(),
         ]);
     }
 }
