@@ -11,7 +11,7 @@ class DietaController extends Controller
      */
     public function index()
     {
-        return view('index');
+        return view('dietas.index');
     }
 
     /**

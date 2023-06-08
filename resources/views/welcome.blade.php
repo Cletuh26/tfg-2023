@@ -1,41 +1,63 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="es">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    <title>Nutrición Algar</title>
-
-    <link rel="shortcut icon" href="{{ asset('favicon.ico')}}" type="image/x-icon">
-
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
 
     <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
+    <!-- FontAwesome -->
+    <script src="https://kit.fontawesome.com/02a25bbc21.js" crossorigin="anonymous"></script>
+
+    <title>Nutrición Algar</title>
 </head>
 
-<body>
-    <div class="d-flex justify-content-center align-items-center bg-secondary">
-        <div class="d-flex w-50">
-            <img src="{{ asset('images/club-algar.png') }}" alt="Logo" class="navbar-item">
-        </div>
-
-        <div class="d-flex w-50">
-            <a href="{{ route('rutinas.index') }}" class="navbar-item text-white text-decoration-none">Rutinas</a>
-            <a href="{{ route('dietas.index') }}" class="navbar-item text-white text-decoration-none">Dietas</a>
-            <a href="{{ route('ejercicios.index') }}" class="navbar-item text-white text-decoration-none">Ejercicios</a>
+<body class="bg-dark text-dark">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container justify-content-center">
+        <div class="row align-items-center">
+            <div class="col-lg-4">
+                <a class="navbar-brand" href="{{ url('/') }}">
+                    <img src="{{ asset('images/club-algar.png') }}" alt="Logo de la empresa">
+                </a>
+            </div>
+            <div class="col-lg-4 text-center">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('rutinas.index') }}">Rutinas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('dietas.index') }}">Dietas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('ejercicios.index') }}">Ejercicios</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-lg-4 text-right">
+                <ul class="navbar-nav">
+                <i class="fas fa-sign-in-alt"></i>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url('login') }}">Iniciar sesión</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url('registro') }}">Registrarse</a>
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
-
+</nav>
 
 
     <!-- Bootstrap scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-
 </body>
 
 </html>
