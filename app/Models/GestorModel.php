@@ -1,20 +1,21 @@
 <?php
 
-namespace Src\Gestor;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Src\Usuario\Usuario;
 
-class Gestor extends Model
+class GestorModel extends Model
 {
     use HasFactory;
 
-    protected $table = 'gestores';
+    protected $table = "gestores";
+    protected $fillable = ['nick', 'contrasenya'];
+    protected $hidden = ['contrasenya'];
 
     public function usuarios(): HasMany
     {
-        return $this->hasMany(Usuario::class,);
+        return $this->hasMany(UsuarioModel::class);
     }
 }
