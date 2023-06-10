@@ -1,0 +1,17 @@
+.bg-banner{
+    background-image: url(../images/banner.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.h-30{
+    height: 45vh;
+}
+
+.w-5{
+    width: 10%;
+}
+
+.ml-50{
+    margin-left: 50%;
+}
