@@ -2,9 +2,8 @@
 
 @section('banner')
 <div class="bg-banner w-100 h-30 d-flex justify-content-center flex-column">
-    <h5 class="text-center">Es hora...</h5>
-    <h3 class="text-center">De ponerse en forma</h3>
-    <button class="btn btn-primary w-5 ml-50">Prueba</button>
+    <h3 class="text-center text-white">Es hora...</h3>
+    <h2 class="text-center text-white ">De ponerse en forma</h2>
 </div>
 @endsection
 

@@ -1,3 +1,6 @@
+@extends('layout.base')
+
+@section('content')
 <div class="row">
     <div class="col-12">
         <div>
@@ -37,3 +40,4 @@
         </table>
     </div>
 </div>
+@endsection
