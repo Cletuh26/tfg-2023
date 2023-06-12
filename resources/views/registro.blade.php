@@ -37,28 +37,28 @@
                                 <p class="text-primary mb-5">Rellena los campos para completar el registro</p>
 
                                 <div class="form-outline form-white mb-4">
-                                    <input type="text" id="dni" class="form-control form-control-lg" maxlength="9" />
                                     <label class="form-label" for="dni">DNI</label>
+                                    <input type="text" id="dni" class="form-control form-control-lg" maxlength="9" />
                                 </div>
 
                                 <div class="form-outline form-white mb-4">
-                                    <input type="email" id="email" class="form-control form-control-lg" />
                                     <label class="form-label" for="email">Email</label>
+                                    <input type="email" id="email" class="form-control form-control-lg" />
                                 </div>
 
                                 <div class="form-outline form-white mb-4">
-                                    <input type="text" id="nick" class="form-control form-control-lg" />
                                     <label class="form-label" for="nick">Nombre usuario</label>
+                                    <input type="text" id="nick" class="form-control form-control-lg" />
                                 </div>
 
                                 <div class="form-outline form-white mb-4">
-                                    <input type="password" id="password" class="form-control form-control-lg" />
                                     <label class="form-label" for="password">Contraseña</label>
+                                    <input type="password" id="password" class="form-control form-control-lg" />
                                 </div>
 
                                 <div class="form-outline form-white mb-4">
-                                    <input type="password" id="password" class="form-control form-control-lg" />
                                     <label class="form-label" for="password">Repetir contraseña</label>
+                                    <input type="password" id="password" class="form-control form-control-lg" />
                                 </div>
 
                                 <button class="btn btn-outline-light btn-lg px-3" type="submit">Registrarse

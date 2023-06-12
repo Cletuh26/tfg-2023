@@ -37,13 +37,13 @@
                                 <p class="text-primary mb-5">Por favor introduce tu usuario y contraseña</p>
 
                                 <div class="form-outline form-white mb-4">
-                                    <input type="text" id="nick" class="form-control form-control-lg" />
                                     <label class="form-label" for="nick">Nombre usuario</label>
+                                    <input type="text" id="nick" class="form-control form-control-lg" />
                                 </div>
 
                                 <div class="form-outline form-white mb-4">
-                                    <input type="password" id="password" class="form-control form-control-lg" />
                                     <label class="form-label" for="password">Contraseña</label>
+                                    <input type="password" id="password" class="form-control form-control-lg" />
                                 </div>
 
                                 <p class="small mb-5 pb-lg-2"><a class="text-white-50" href="#!">¿Has olvidado la contraseña?</a></p>

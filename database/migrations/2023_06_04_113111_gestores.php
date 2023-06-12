@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('gestores', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('nick');
-            $table->string('contrasenya');
+            $table->string('password');
             $table->timestamps();
         });
     }

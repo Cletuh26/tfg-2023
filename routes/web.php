@@ -20,13 +20,15 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('inicio');
 
 Route::get('/login', function(){
     return view('login');
-});
+})->name('login');
 
-Route::get('registro', [AuthController::class, 'registro']);
+Route::get('registro',function(){
+    return view('registro');
+})->name('registro');
 
 Route::resource('usuarios', UsuarioController::class);
 Route::resource('rutinas', RutinaController::class);

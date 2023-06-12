@@ -25,7 +25,7 @@
     <div class="d-flex justify-content-center m-auto bg-light p-4">
         <!-- Navbar -->
         <div class="d-flex justify-content-center align-items-center w-25">
-            <a href="{{ url('/') }}"><img src="{{ asset('images/club-algar-negro.png') }}" alt="Logo" class="navbar-item"></a>
+            <a href="{{ route('inicio') }}"><img src="{{ asset('images/club-algar-negro.png') }}" alt="Logo" class="navbar-item"></a>
         </div>
         <div class="d-flex justify-content-center align-items-center w-50">
             <a href="{{ route('rutinas.index') }}" class="navbar-item text-decoration-none m-2">Rutinas</a>
@@ -38,7 +38,7 @@
             <div class="navbar-item">
                 <div class="buttons">
                     <i class="fa-solid fa-user"></i>
-                    <a href="{{ url('login') }}" class="button text-decoration-none text-dark me-3">Iniciar sesión</a>
+                    <a href="{{ route('login') }}" class="button text-decoration-none text-dark me-3">Iniciar sesión</a>
                     <i class="fa-solid fa-key"></i>
                     <a href="{{ route('registro') }}" class="button text-decoration-none text-dark">Registrarse</a>
                 </div>

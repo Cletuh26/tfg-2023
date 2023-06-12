@@ -10,11 +10,6 @@ use Illuminate\Support\Facades\Hash;
  
 class AuthController extends Controller
 {
-    public function registro()
-    {
-        return view('registro');
-    }
- 
     public function registerPost(Request $request)
     {
         $user = new UsuarioModel();
@@ -27,21 +22,16 @@ class AuthController extends Controller
  
         return back()->with('success', 'Register successfully');
     }
- 
-    public function login()
-    {
-        return view('login');
-    }
- 
+
     public function loginPost(Request $request)
     {
         $credetials = [
-            'email' => $request->email,
+            'nick' => $request->nick,
             'password' => $request->password,
         ];
  
         if (Auth::attempt($credetials)) {
-            return redirect('/home')->with('success', 'Login Success');
+            return redirect('/')->with('success', 'Has iniciado sesión correctamente');
         }
  
         return back()->with('error', 'Error Email or Password');

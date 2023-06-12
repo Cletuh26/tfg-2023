@@ -10,7 +10,7 @@ class RutinaDefectoModel extends Model
 {
     use HasFactory;
 
-    protected $table = "rutina_defecto";
+    protected $table = "rutinas_defecto";
 
     public function usuario(): BelongsTo
     {

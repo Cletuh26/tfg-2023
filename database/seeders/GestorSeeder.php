@@ -2,9 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\GestorModel;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
 
 class GestorSeeder extends Seeder
 {
@@ -13,11 +12,6 @@ class GestorSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('gestores')->insert([
-            'nick' => fake()->name('male'),
-            'contrasenya' => Hash::make('password'),
-            'created_at' => date_create(),
-            'updated_at' => date_create(),
-        ]);
+        GestorModel::factory(1)->create();
     }
 }

@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('email');
             $table->string('telefono');
             $table->string('nick');
-            $table->string('contrasenya');
+            $table->string('password');
             $table->enum('estado',['alta','baja']);
             $table->float('peso');
             $table->float('altura');
