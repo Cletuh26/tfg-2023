@@ -63,13 +63,13 @@
                                     <small style='color:#ff4040;'>{{ $message }}</small><br><br>
                                     @enderror
 
-                                    <label class="form-label" for="confirm_password">Cofirmar contraseña</label>
+                                    <label class="form-label" for="confirm_password">Confirmar contraseña</label>
                                     <input type="password" id="confirm_password" name="confirm_password" class="form-control form-control-lg" />
                                     @error('confirm_password')  
                                     <small style='color:#ff4040;'>{{ $message }}</small><br><br>
                                     @enderror
 
-                                    <button class="btn btn-primary btn-outline-light btn-lg px-3 mt-3" type="submit">Registrarse</button>
+                                    <button class="btn btn-outline-light btn-lg px-3 mt-3" type="submit">Registrarse</button>
                                 </form>
                             </div>
 

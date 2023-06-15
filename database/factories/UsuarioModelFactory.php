@@ -32,7 +32,7 @@ class UsuarioModelFactory extends Factory
             'email' => $email,
             'telefono' => $telefono,
             'nick' => $nick,
-            'password' => bcrypt('pass'),
+            'password' => '$2y$10$lvj/IaS/QyvwfokC/GyNZOEdAEmpDbi8Yzqi/WojkDUHjejX.PUxi', //pass
             'estado' => 'alta',
             'peso' => $peso,
             'altura' => $altura,

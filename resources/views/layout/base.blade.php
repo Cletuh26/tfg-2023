@@ -36,7 +36,11 @@
         <div class="d-flex justify-content-center align-items-center w-25">
             @auth
             <div class="navbar-item">
-                <p href="" class="button">Cerrar sesión</p>
+                <div class="d-flex justify-content-center flex-column align-items-center">
+                    <img style="width:30px;" src="{{ asset('images/user-default.png') }}" alt="Logo usuario">
+                    <h6 style="text-align:right;">{{ ucfirst(Auth::user()->nick) }}</h6>
+                </div>
+                <a href="" class="button text-decoration-none text-danger">Cerrar sesión</a>
             </div>
             @else
             <div class="navbar-item">
