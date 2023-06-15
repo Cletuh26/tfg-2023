@@ -6,6 +6,7 @@ use App\Models\UsuarioModel;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class RegistroController extends Controller
@@ -35,7 +36,9 @@ class RegistroController extends Controller
         $usuario->gestor_id = '1';
         $usuario->save();
 
+        Auth::attempt(['email' => $request->email, 'password' => $request->password]);
+
         // Redirigir a una página de éxito o realizar alguna otra acción
-        return redirect('/')->with('exito', '¡Registro exitoso!');
+        return redirect('/')->with('exito', '¡Te has registrado correctamente!');
     }
 }

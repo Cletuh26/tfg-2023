@@ -1,7 +1,7 @@
 @extends('layout.base')
 
 @if (session('exito'))
-<div class="rounded alert-success p-3">
+<div class="rounded alert-success p-3 text-center">
     {{ session('exito') }}
 </div>
 @endif
