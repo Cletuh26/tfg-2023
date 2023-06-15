@@ -2,9 +2,9 @@
 
 use App\Http\Controllers\DietaController;
 use App\Http\Controllers\EjercicioController;
+use App\Http\Controllers\RegistroController;
 use App\Http\Controllers\RutinaController;
 use App\Http\Controllers\UsuarioController;
-use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,9 +26,8 @@ Route::get('/login', function(){
     return view('login');
 })->name('login');
 
-Route::get('registro',function(){
-    return view('registro');
-})->name('registro');
+Route::get('registro', [RegistroController::class, 'verFormulario'])->name('registro');
+Route::post('registro', [RegistroController::class, 'procesarFormulario'])->name('registroProcesado');
 
 Route::resource('usuarios', UsuarioController::class);
 Route::resource('rutinas', RutinaController::class);

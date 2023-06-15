@@ -27,45 +27,54 @@
             <div class="row d-flex justify-content-center align-items-center h-100">
                 <div class="col-12 col-md-8 col-lg-6 col-xl-5">
                     <div class="card bg-dark text-white" style="border-radius: 1rem;">
-                        <div class="card-body p-5 text-center">
+                        <div class="card-body p-5 pt-2 pb-2 text-center">
 
                             <div class="mb-md-4 mt-md-1 pb-1">
 
                                 <a href="/"><img src="{{ asset('images/club-algar-blanco.png') }}" alt="Logo" class="navbar-item pb-md-3"></a>
 
-                                <h2 class="fw-bold mb-2 text-uppercase">Registrarse</h2>
-                                <p class="text-primary mb-5">Rellena los campos para completar el registro</p>
+                                <h2 class="fw-bold mb-2 text-uppercase">Registro</h2>
+                                <p class="text-primary mb-2">Rellena los campos para completar el registro</p>
 
-                                <div class="form-outline form-white mb-4">
+                                <form action="{{ route('registroProcesado') }}" method="POST">
+                                    @csrf
+
                                     <label class="form-label" for="dni">DNI</label>
-                                    <input type="text" id="dni" class="form-control form-control-lg" maxlength="9" />
-                                </div>
+                                    <input type="text" id="dni" name="dni" class="form-control form-control-lg" maxlength="9" value="{{ old('dni') }}" />
+                                    @error('dni')
+                                    <small style='color:#ff4040;'>{{ $message }}</small><br><br>
+                                    @enderror
 
-                                <div class="form-outline form-white mb-4">
                                     <label class="form-label" for="email">Email</label>
-                                    <input type="email" id="email" class="form-control form-control-lg" />
-                                </div>
+                                    <input type="email" id="email" name="email" class="form-control form-control-lg" value="{{ old('email') }}" />
+                                    @error('email')
+                                    <small style='color:#ff4040;'>{{ $message }}</small><br><br>
+                                    @enderror
 
-                                <div class="form-outline form-white mb-4">
                                     <label class="form-label" for="nick">Nombre usuario</label>
-                                    <input type="text" id="nick" class="form-control form-control-lg" />
-                                </div>
+                                    <input type="text" id="nick" name="nick" class="form-control form-control-lg" value="{{ old('nick') }}" />
+                                    @error('nick')
+                                    <small style='color:#ff4040;'>{{ $message }}</small><br><br>
+                                    @enderror
 
-                                <div class="form-outline form-white mb-4">
                                     <label class="form-label" for="password">Contraseña</label>
-                                    <input type="password" id="password" class="form-control form-control-lg" />
-                                </div>
+                                    <input type="password" id="password" name="password" class="form-control form-control-lg" />
+                                    @error('password')
+                                    <small style='color:#ff4040;'>{{ $message }}</small><br><br>
+                                    @enderror
 
-                                <div class="form-outline form-white mb-4">
-                                    <label class="form-label" for="password">Repetir contraseña</label>
-                                    <input type="password" id="password" class="form-control form-control-lg" />
-                                </div>
+                                    <label class="form-label" for="confirm_password">Cofirmar contraseña</label>
+                                    <input type="password" id="confirm_password" name="confirm_password" class="form-control form-control-lg" />
+                                    @error('confirm_password')  
+                                    <small style='color:#ff4040;'>{{ $message }}</small><br><br>
+                                    @enderror
 
-                                <button class="btn btn-outline-light btn-lg px-3" type="submit">Registrarse
+                                    <button class="btn btn-primary btn-outline-light btn-lg px-3 mt-3" type="submit">Registrarse</button>
+                                </form>
                             </div>
 
                             <div>
-                                <p class="mb-0">¿Ya tienes cuenta? <a href="{{ url('login') }}" class="text-primary fw-bold">Iniciar sesión</a>
+                                <p class="mb-0">¿Ya tienes cuenta? <a href="{{ route('login') }}" class="text-primary fw-bold">Iniciar sesión</a>
                                 </p>
                             </div>
 

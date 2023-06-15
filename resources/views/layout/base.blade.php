@@ -34,7 +34,11 @@
             <a href="{{ route('ejercicios.index') }}" class="navbar-item text-decoration-none m-2">Suscribirse</a>
         </div>
         <div class="d-flex justify-content-center align-items-center w-25">
-            @guest
+            @auth
+            <div class="navbar-item">
+                <p href="" class="button">Cerrar sesión</p>
+            </div>
+            @else
             <div class="navbar-item">
                 <div class="buttons">
                     <i class="fa-solid fa-user"></i>
@@ -43,12 +47,7 @@
                     <a href="{{ route('registro') }}" class="button text-decoration-none text-dark">Registrarse</a>
                 </div>
             </div>
-            @else
-            <div class="navbar-item">
-                <i class="fa-solid fa-pencil"></i>
-                <a href="" class="button">Administrar</a>
-            </div>
-            @endguest
+            @endauth
         </div>
 
     </div>

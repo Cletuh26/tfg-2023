@@ -1,5 +1,11 @@
 @extends('layout.base')
 
+@if (session('exito'))
+<div class="rounded alert-success p-3">
+    {{ session('exito') }}
+</div>
+@endif
+
 @section('banner')
 <div class="bg-banner w-100 h-30 d-flex justify-content-center flex-column">
     <h3 class="text-center text-white">Es hora...</h3>
