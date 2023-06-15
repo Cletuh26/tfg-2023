@@ -28,7 +28,7 @@ class UsuarioModelFactory extends Factory
         $gestores = GestorModel::all();
         
         return [
-            'dni' => fake()->numerify('########') . fake()->randomLetter(),
+            'dni' => fake()->numerify('########') . strtoupper(fake()->randomLetter()),
             'email' => $email,
             'telefono' => $telefono,
             'nick' => $nick,

@@ -17,7 +17,7 @@ return new class extends Migration
             $table->bigIncrements('id');
             $table->string('nombre');
             $table->string('descripcion');
-            $table->binary('imagen');
+            $table->binary('imagen')->nullable();
             $table->enum('tipo',['pierna','pecho','espalda','hombro','brazo','gluteos']);
             $table->enum('tipo_ejercicio',['1','2','3','4']);
             /* Tipos:

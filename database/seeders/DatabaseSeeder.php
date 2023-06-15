@@ -20,7 +20,9 @@ class DatabaseSeeder extends Seeder
             RutinaEjerciciosSeeder::class,
             DietaSeeder::class,
             AlimentoSeeder::class,
-            DietaAlimentoSeeder::class
+            DietaAlimentoSeeder::class,
+            RutinaDefectoUsuarioSeeder::class,
+            RutinaDefectoEjercicioSeeder::class
         ]);
     }
 }

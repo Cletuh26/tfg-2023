@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class UsuarioModel extends Model
 {
@@ -19,8 +19,8 @@ class UsuarioModel extends Model
         return $this->belongsTo(GestorModel::class);
     }
 
-    public function rutinaDefecto(): HasOne
+    public function rutinasDefecto(): BelongsToMany
     {
-        return $this->hasOne(RutinaDefectoModel::class);
+        return $this->belongsToMany(RutinaDefectoModel::class, 'rutinas_defecto_usuarios');
     }
 }

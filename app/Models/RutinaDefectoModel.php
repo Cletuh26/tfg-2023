@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class RutinaDefectoModel extends Model
 {
@@ -12,8 +12,8 @@ class RutinaDefectoModel extends Model
 
     protected $table = "rutinas_defecto";
 
-    public function usuario(): BelongsTo
+    public function usuarios(): BelongsToMany
     {
-        return $this->belongsTo(UsuarioModel::class);
+        return $this->belongsToMany(UsuarioModel::class,'rutinas_defecto_usuarios');
     }
 }

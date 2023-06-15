@@ -2,8 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\RutinaModel;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
 
 class RutinaSeeder extends Seeder
 {
@@ -12,13 +12,6 @@ class RutinaSeeder extends Seeder
      */
     public function run(): void
     {
-        $usuariosIds = DB::table('usuarios')->pluck('id');
-
-        DB::table('rutinas')->insert([
-            'tipo' => fake()->randomElement(['equilibrada','definicion','volumen']),
-            'usuario_id' => fake()->randomElement($usuariosIds),
-            'created_at' => date_create(),
-            'updated_at' => date_create(),
-        ]);
+        RutinaModel::factory(5)->create();
     }
 }

@@ -18,7 +18,7 @@ class RutinaDefectoModelFactory extends Factory
     public function definition(): array
     {
         return [
-            'tipo' => fake()->randomElement(['equilibrada','volumen','definicion']),
+            'tipo' => fake()->randomElement(['equilibrada','volumen','definicion'])
         ];
     }
 }

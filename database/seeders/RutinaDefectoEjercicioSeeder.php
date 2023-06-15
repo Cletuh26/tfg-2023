@@ -2,16 +2,16 @@
 
 namespace Database\Seeders;
 
-use App\Models\AlimentoModel;
+use App\Models\RutinaDefectoEjercicioModel;
 use Illuminate\Database\Seeder;
 
-class AlimentoSeeder extends Seeder
+class RutinaDefectoEjercicioSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        AlimentoModel::factory(5)->create();
+        RutinaDefectoEjercicioModel::factory(2)->create();
     }
 }

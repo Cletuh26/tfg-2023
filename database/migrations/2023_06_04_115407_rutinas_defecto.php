@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('rutinas_defecto', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->enum('tipo',['equilibrada','deficit','calorica','personalizada']);
+            $table->enum('tipo',['equilibrada','definicion','volumen']);
             $table->timestamps();
         });
     }

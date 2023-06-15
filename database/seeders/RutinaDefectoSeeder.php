@@ -12,6 +12,8 @@ class RutinaDefectoSeeder extends Seeder
      */
     public function run(): void
     {
-        RutinaDefectoModel::factory(1)->create();
+        RutinaDefectoModel::create(['tipo' => 'equilibrada']);
+        RutinaDefectoModel::create(['tipo' => 'volumen']);
+        RutinaDefectoModel::create(['tipo' => 'definicion']);
     }
 }
