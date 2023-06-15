@@ -25,11 +25,21 @@ class LogueoController extends Controller
         {
             $request->session()->regenerate();
             return redirect('/')
-                ->withSuccess('Has iniciado sesión correctamente');
+                ->with(['login' => 'Has iniciado sesión correctamente']);
         }
 
         return back()->withErrors([
             'credenciales' => 'Email o contraseña no válido.',
         ])->onlyInput('email');
+    }
+
+    public function logout()
+    {
+        Auth::logout();
+
+        request()->session()->invalidate();
+        request()->session()->regenerateToken();
+
+        return redirect('/')->with(['logout' => 'Sesión cerrada corretamente']);
     }
 }

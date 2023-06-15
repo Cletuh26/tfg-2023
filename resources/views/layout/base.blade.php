@@ -40,7 +40,10 @@
                     <img style="width:30px;" src="{{ asset('images/user-default.png') }}" alt="Logo usuario">
                     <h6 style="text-align:right;">{{ ucfirst(Auth::user()->nick) }}</h6>
                 </div>
-                <a href="" class="button text-decoration-none text-danger">Cerrar sesión</a>
+                <form action="{{ route('logout') }}" method="post">
+                    @csrf
+                    <a href="#" onclick="this.closest('form').submit()" class="button text-decoration-none text-danger">Cerrar sesión</a>
+                </form>
             </div>
             @else
             <div class="navbar-item">

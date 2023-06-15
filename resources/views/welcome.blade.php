@@ -1,8 +1,20 @@
 @extends('layout.base')
 
-@if (session('exito'))
+@if (session('logout'))
 <div class="rounded alert-success p-3 text-center">
-    {{ session('exito') }}
+    {{ session('logout') }}
+</div>
+@endif
+
+@if (session('login'))
+<div class="rounded alert-success p-3 text-center">
+    {{ session('login') }}
+</div>
+@endif
+
+@if (session('registro'))
+<div class="rounded alert-success p-3 text-center">
+    {{ session('registro') }}
 </div>
 @endif
 

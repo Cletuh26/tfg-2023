@@ -39,6 +39,6 @@ class RegistroController extends Controller
         Auth::attempt(['email' => $request->email, 'password' => $request->password]);
 
         // Redirigir a una página de éxito o realizar alguna otra acción
-        return redirect('/')->with('exito', '¡Te has registrado correctamente!');
+        return redirect('/')->with('registro', '¡Te has registrado correctamente!');
     }
 }

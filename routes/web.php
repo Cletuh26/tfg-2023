@@ -22,6 +22,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 })->name('inicio');
+Route::post('logout', [LogueoController::class, 'logout'])->name('logout');
 
 Route::get('login', [LogueoController::class, 'verLogin'])->name('login');
 Route::post('login', [LogueoController::class, 'procesarLogin'])->name('loginProcesado');
