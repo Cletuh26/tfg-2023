@@ -20,7 +20,10 @@ class RutinaModelFactory extends Factory
         $usuarios = UsuarioModel::all();
 
         return [
+            'nombre' => fake()->word(),
+            'descripcion' => fake()->realText(),
             'tipo' => fake()->randomElement(['equilibrada','definicion','volumen']),
+            'imagen' => fake()->image('storage/app/public/images/rutinas'),
             'usuario_id' => fake()->randomElement($usuarios)->id
         ];
     }

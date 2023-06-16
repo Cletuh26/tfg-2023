@@ -1,7 +1,6 @@
 .bg-banner {
-    background-image: url(../images/banner.jpg);
-    background-repeat: no-repeat;
-    background-size: cover;
+    background: rgb(0,212,255);
+    background: linear-gradient(90deg, rgba(0,212,255,1) 0%, rgba(0,153,184,1) 100%);
 }
 
 .h-30 {
@@ -12,24 +11,19 @@
     width: 10%;
 }
 
-.ml-50 {
-    margin-left: 50%;
-}
-
 .gradient-custom {
-    /* fallback for old browsers */
-    background: url('../images/bg-signin.jpg');
-    background-size: cover;
-    background-repeat: no-repeat;
+    background: rgb(0,212,255);
+    background: linear-gradient(90deg, rgba(0,212,255,1) 0%, rgba(0,153,184,1) 100%);
 }
 
-a.navbar-item{
+a.navbar-item {
     color: #212529;
 }
-a.navbar-item:hover{
+
+a.navbar-item:hover {
     color: #109cdd;
 }
 
-div.bg-banner > * {
+div.bg-banner>* {
     text-shadow: 2px 2px 2px #000000;
 }

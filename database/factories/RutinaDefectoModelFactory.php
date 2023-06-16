@@ -2,7 +2,6 @@
 
 namespace Database\Factories;
 
-use App\Models\UsuarioModel;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -18,7 +17,9 @@ class RutinaDefectoModelFactory extends Factory
     public function definition(): array
     {
         return [
-            'tipo' => fake()->randomElement(['equilibrada','volumen','definicion'])
+            'descripcion' => fake()->realText(),
+            'tipo' => fake()->randomElement(['equilibrada','volumen','definicion']),
+            'imagen' => fake()->image('storage/app/public/images/rutinas_defecto')
         ];
     }
 }

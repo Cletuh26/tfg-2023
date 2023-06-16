@@ -31,7 +31,7 @@
 
                             <div class="mb-md-5 mt-md-4 pb-2">
 
-                                <a href="/"><img src="{{ asset('images/club-algar-blanco.png') }}" alt="Logo" class="navbar-item pb-md-5"></a>
+                                <a href="{{ route('inicio') }}"><img src="{{ Storage::url('images/club-algar-blanco.png') }}" alt="Logo" class="navbar-item pb-md-5"></a>
 
                                 <h2 class="fw-bold mb-2 text-uppercase">Iniciar sesión</h2>
                                 <p class="text-primary mb-5">Por favor introduce tu correo y contraseña</p>
@@ -61,7 +61,7 @@
                             </div>
 
                             <div>
-                                <p class="mb-0">¿No tienes cuenta? <a href="{{ url('registro') }}" class="text-primary fw-bold">Registrate</a>
+                                <p class="mb-0">¿No tienes cuenta? <a href="{{ route('registro') }}" class="text-primary fw-bold">Registrate</a>
                                 </p>
                             </div>
 

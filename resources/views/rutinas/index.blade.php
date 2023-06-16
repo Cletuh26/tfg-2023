@@ -1,43 +1,52 @@
 @extends('layout.base')
 
 @section('content')
-<div class="row">
-    <div class="col-12">
+<div class="row w-100">
+    <div class="col-12 mt-3 text-center">
         <div>
-            <h2 class="text-white">CRUD de Tareas</h2>
-        </div>
-        <div>
-            <a href="" class="btn btn-primary">Crear tarea</a>
+            <h2 class="text-dark">Rutinas predefinidas</h2>
         </div>
     </div>
 
-    <div class="col-12 mt-4">
-        <table class="table table-bordered text-white">
-            <tr class="text-secondary">
-                <th>Tarea</th>
-                <th>Descripción</th>
-                <th>Fecha</th>
-                <th>Estado</th>
-                <th>Acción</th>
-            </tr>
-            <tr>
-                <td class="fw-bold">Estudiar Laravel</td>
-                <td>Ver video: tu primer CRUD con laravel 10 en el canal de YouDevs</td>
-                <td>
-                    31/03/23
-                </td>
-                <td>
-                    <span class="badge bg-warning fs-6">Pendiente</span>
-                </td>
-                <td>
-                    <a href="" class="btn btn-warning">Editar</a>
-
-                    <form action="" method="post" class="d-inline">
-                        <button type="submit" class="btn btn-danger">Eliminar</button>
-                    </form>
-                </td>
-            </tr>
-        </table>
+    <div class="col-12 mt-4 d-flex justify-content-center align-items-center gap-5 mb-3">
+        @foreach($rutinasDefecto as $rutinaD)
+        <div class="card" style="width: 18rem;">
+            <img src="{{ Storage::url($rutinaD->imagen) }}" class="card-img-top" alt="Imagen rutina">
+            <div class="card-body">
+                <h4 class="card-title">{{ ucfirst($rutinaD->tipo) }}</h4>
+                <p class="card-text">{{ ucfirst($rutinaD->descripcion) }}</p>
+                <a href="{{ route('rutinas.index') }}" class="btn btn-primary">Ver rutina</a>
+            </div>
+        </div>
+        @endforeach
     </div>
+
+    <div class="col-12 mt-5 text-center">
+        <div>
+            <h2 class="text-dark">Rutinas personalizadas</h2>
+        </div>
+    </div>
+
+    @if(count($rutinasPersonalizadas) < 1)
+    <div class="col-12 mt-1 text-center">
+        <div>
+            <h5 class="text-danger">No se han encontrado rutinas personalizadas</h5>
+            <a href="{{ route('rutinas.create') }}" class="btn btn-success"><i class="fa-solid fa-plus"></i> Crear nueva rutina</a>
+        </div>
+    </div>
+    @else
+    <div class="col-12 mt-4 d-flex justify-content-center align-items-center gap-5 mb-3">
+        @foreach($rutinasPersonalizadas as $rutinaP)
+        <div class="card" style="width: 18rem;">
+            <img src="{{ Storage::url($rutinaP->imagen) }}" class="card-img-top" alt="Imagen rutina">
+            <div class="card-body">
+                <h4 class="card-title">{{ ucfirst($rutinaP->tipo) }}</h4>
+                <p class="card-text">{{ ucfirst($rutinaP->descripcion) }}</p>
+                <a href="{{ route('rutinas.index') }}" class="btn btn-primary">Ver rutina</a>
+            </div>
+        </div>
+        @endforeach
+    </div>
+    @endif
 </div>
 @endsection

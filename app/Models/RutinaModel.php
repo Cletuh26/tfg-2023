@@ -12,6 +12,7 @@ class RutinaModel extends Model
     use HasFactory;
 
     protected $table = "rutinas";
+    protected $fillable = ['nombre','descripcion', 'tipo' , 'imagen', 'usuario_id'];
 
     public function usuario(): BelongsTo
     {

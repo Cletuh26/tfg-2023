@@ -31,7 +31,7 @@
 
                             <div class="mb-md-4 mt-md-1 pb-1">
 
-                                <a href="/"><img src="{{ asset('images/club-algar-blanco.png') }}" alt="Logo" class="navbar-item pb-md-3"></a>
+                                <a href="{{ route('inicio') }}"><img src="{{ Storage::url('images/club-algar-blanco.png') }}" alt="Logo" class="navbar-item pb-md-3"></a>
 
                                 <h2 class="fw-bold mb-2 text-uppercase">Registro</h2>
                                 <p class="text-primary mb-2">Rellena los campos para completar el registro</p>

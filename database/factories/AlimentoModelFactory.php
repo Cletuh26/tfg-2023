@@ -19,7 +19,7 @@ class AlimentoModelFactory extends Factory
         return [
             'nombre' => fake()->name(),
             'descripcion' => fake()->text(),
-            'imagen' => fake()->image(),
+            'imagen' => fake()->image('storage/app/public/images/alimentos'),
             'tipo' => fake()->randomElement(['comida','bebida','otro']),
             'datos' => fake()->text(),
         ];

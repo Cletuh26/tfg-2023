@@ -15,7 +15,10 @@ return new class extends Migration
     {
         Schema::create('rutinas', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('nombre');
+            $table->string('descripcion')->nullable();
             $table->enum('tipo',['equilibrada','definicion','volumen']);
+            $table->binary('imagen')->nullable();
             $table->bigInteger('usuario_id')->unsigned();
             $table->foreign('usuario_id')->references('id')->on('usuarios');
             $table->timestamps();

@@ -22,12 +22,13 @@
 </head>
 
 <body class="bg-dark text-dark">
+    <!-- Navbar -->
     <div class="d-flex justify-content-center m-auto bg-light p-4">
-        <!-- Navbar -->
         <div class="d-flex justify-content-center align-items-center w-25">
-            <a href="{{ route('inicio') }}"><img src="{{ asset('images/club-algar-negro.png') }}" alt="Logo" class="navbar-item"></a>
+            <a href="{{ route('inicio') }}"><img src="{{ Storage::url('images/club-algar-negro.png') }}" alt="Logo" class="navbar-item"></a>
         </div>
         <div class="d-flex justify-content-center align-items-center w-50">
+            <a href="{{ route('inicio') }}" class="navbar-item text-decoration-none m-2">Inicio</a>
             <a href="{{ route('rutinas.index') }}" class="navbar-item text-decoration-none m-2">Rutinas</a>
             <a href="{{ route('dietas.index') }}" class="navbar-item text-decoration-none m-2">Dietas</a>
             <a href="{{ route('ejercicios.index') }}" class="navbar-item text-decoration-none m-2">Crear entrenamiento</a>
@@ -37,12 +38,12 @@
             @auth
             <div class="navbar-item">
                 <div class="d-flex justify-content-center flex-column align-items-center">
-                    <img style="width:30px;" src="{{ asset('images/user-default.png') }}" alt="Logo usuario">
+                    <img style="width:30px;" src="{{ Storage::url('images/user-default.png') }}" alt="Logo usuario">
                     <h6 style="text-align:right;">{{ ucfirst(Auth::user()->nick) }}</h6>
                 </div>
                 <form action="{{ route('logout') }}" method="post">
                     @csrf
-                    <a href="#" onclick="this.closest('form').submit()" class="button text-decoration-none text-danger">Cerrar sesión</a>
+                    <a href="#" onclick="this.closest('form').submit()" class="button text-decoration-none text-danger">Cerrar sesión <i class="fa-solid fa-right-to-bracket"></i></a>
                 </form>
             </div>
             @else

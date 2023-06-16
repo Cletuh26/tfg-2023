@@ -30,7 +30,7 @@ Route::post('login', [LogueoController::class, 'procesarLogin'])->name('loginPro
 Route::get('registro', [RegistroController::class, 'verFormulario'])->name('registro');
 Route::post('registro', [RegistroController::class, 'procesarFormulario'])->name('registroProcesado');
 
-Route::resource('usuarios', UsuarioController::class);
-Route::resource('rutinas', RutinaController::class);
-Route::resource('dietas', DietaController::class);
-Route::resource('ejercicios', EjercicioController::class);
+Route::resource('usuarios', UsuarioController::class)->middleware('auth');
+Route::resource('rutinas', RutinaController::class)->middleware('auth')->name('get','rutinas');
+Route::resource('dietas', DietaController::class)->middleware('auth');
+Route::resource('ejercicios', EjercicioController::class)->middleware('auth');
