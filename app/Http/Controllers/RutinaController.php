@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\EjercicioModel;
 use App\Models\RutinaDefectoModel;
 use App\Models\RutinaModel;
 use App\Models\UsuarioModel;
@@ -28,7 +29,14 @@ class RutinaController extends Controller
      */
     public function create()
     {
-        return view('rutinas.create');
+        // $ejercicios = EjercicioModel::all();
+        $ejercicios = [];
+
+        if(count($ejercicios) == 0){
+            $ejercicios = [];
+        }
+
+        return view('rutinas.create',['ejercicios' => $ejercicios]);
     }
 
     /**

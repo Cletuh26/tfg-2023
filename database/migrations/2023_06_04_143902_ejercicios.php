@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('nombre');
             $table->string('descripcion');
             $table->binary('imagen')->nullable();
-            $table->enum('tipo',['pierna','pecho','espalda','hombro','brazo','gluteos']);
+            $table->enum('tipo',['pierna','pecho','espalda','hombro','brazo']);
             $table->integer('series')->default(1);
             $table->integer('repeticiones')->nullable();
             $table->integer('duracion')->nullable();

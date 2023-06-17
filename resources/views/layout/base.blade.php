@@ -70,7 +70,7 @@
     </div>
 
     <!-- Footer -->
-    <footer class="footer mt-auto py-3 bg-light">
+    <footer class="footer mt-auto py-3 bg-light fixed-bottom">
         <div class="container">
             <span class="text-muted">Nutrición Algar ® Todos los derechos reservados. Creado con 💜 por Ismael</span>
         </div>
