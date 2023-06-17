@@ -19,17 +19,10 @@ return new class extends Migration
             $table->string('descripcion');
             $table->binary('imagen')->nullable();
             $table->enum('tipo',['pierna','pecho','espalda','hombro','brazo','gluteos']);
-            $table->enum('tipo_ejercicio',['1','2','3','4']);
-            /* Tipos:
-            * 1 - Tienen series y repeticiones (default)
-            * 2 - Tienen series y duración
-            * 3 - Tienen repeticiones
-            * 4 - Tienen series, repeticiones y duración
-            */
-            $table->integer('series');
-            $table->integer('repeticiones');
-            $table->integer('duracion');
-            $table->integer('descanso'); // entre ejercicios
+            $table->integer('series')->default(1);
+            $table->integer('repeticiones')->nullable();
+            $table->integer('duracion')->nullable();
+            $table->integer('descanso')->nullable(); // entre ejercicios
             $table->timestamps();
         });
     }

@@ -40,31 +40,31 @@
                                     @csrf
 
                                     <label class="form-label" for="dni">DNI</label>
-                                    <input type="text" id="dni" name="dni" class="form-control form-control-lg" maxlength="9" value="{{ old('dni') }}" />
+                                    <input type="text" id="dni" name="dni" class="form-control form-control-lg" minlength="9" maxlength="9" placeholder="Introduce DNI..." value="{{ old('dni') }}" required title="Introduce 8 números y 1 letra (DNI)"/>
                                     @error('dni')
                                     <small style='color:#ff4040;'>{{ $message }}</small><br><br>
                                     @enderror
 
                                     <label class="form-label" for="email">Email</label>
-                                    <input type="email" id="email" name="email" class="form-control form-control-lg" value="{{ old('email') }}" />
+                                    <input type="email" id="email" name="email" placeholder="Introduce email..." class="form-control form-control-lg" value="{{ old('email') }}" required title="Introduce un email"/>
                                     @error('email')
                                     <small style='color:#ff4040;'>{{ $message }}</small><br><br>
                                     @enderror
 
                                     <label class="form-label" for="nick">Nombre usuario</label>
-                                    <input type="text" id="nick" name="nick" class="form-control form-control-lg" value="{{ old('nick') }}" />
+                                    <input type="text" id="nick" name="nick" placeholder="Introduce un nombre de usuario..." class="form-control form-control-lg" value="{{ old('nick') }}" required title="Introduce un nombre de usuario"/>
                                     @error('nick')
                                     <small style='color:#ff4040;'>{{ $message }}</small><br><br>
                                     @enderror
 
                                     <label class="form-label" for="password">Contraseña</label>
-                                    <input type="password" id="password" name="password" class="form-control form-control-lg" />
+                                    <input type="password" id="password" name="password" placeholder="Introduce una contraseña..." class="form-control form-control-lg" required title="Introduce una contraseña"/>
                                     @error('password')
                                     <small style='color:#ff4040;'>{{ $message }}</small><br><br>
                                     @enderror
 
                                     <label class="form-label" for="confirm_password">Confirmar contraseña</label>
-                                    <input type="password" id="confirm_password" name="confirm_password" class="form-control form-control-lg" />
+                                    <input type="password" id="confirm_password" name="confirm_password" placeholder="Repita la contraseña..." class="form-control form-control-lg" required title="Repita la contraseña"/>
                                     @error('confirm_password')  
                                     <small style='color:#ff4040;'>{{ $message }}</small><br><br>
                                     @enderror

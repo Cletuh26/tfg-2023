@@ -20,7 +20,7 @@ class RegistroController extends Controller
     {
         // Validar los datos del formulario
         $request->validate([
-            'dni' => 'required|unique:usuarios',
+            'dni' => ['required','regex:/^[0-9]{8}[A-Z]$/i', 'unique:usuarios'],
             'email' => 'required|email|unique:usuarios',
             'nick' => 'required|unique:usuarios',
             'password' => 'required|min:6',

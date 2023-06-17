@@ -12,6 +12,6 @@ class RutinaDefectoEjercicioSeeder extends Seeder
      */
     public function run(): void
     {
-        RutinaDefectoEjercicioModel::factory(2)->create();
+        RutinaDefectoEjercicioModel::factory(10)->create();
     }
 }
