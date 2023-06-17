@@ -23,7 +23,7 @@
 
 <body class="bg-dark text-dark">
     <!-- Navbar -->
-    <div class="d-flex justify-content-center m-auto bg-light p-4">
+    <div class="d-flex justify-content-center m-auto bg-light p-2">
         <div class="d-flex justify-content-center align-items-center w-25">
             <a href="{{ route('inicio') }}"><img src="{{ Storage::url('images/club-algar-negro.png') }}" alt="Logo" class="navbar-item"></a>
         </div>
@@ -31,8 +31,7 @@
             <a href="{{ route('inicio') }}" class="navbar-item text-decoration-none m-2">Inicio</a>
             <a href="{{ route('rutinas.index') }}" class="navbar-item text-decoration-none m-2">Rutinas</a>
             <a href="{{ route('dietas.index') }}" class="navbar-item text-decoration-none m-2">Dietas</a>
-            <a href="{{ route('ejercicios.index') }}" class="navbar-item text-decoration-none m-2">Crear entrenamiento</a>
-            <a href="{{ route('ejercicios.index') }}" class="navbar-item text-decoration-none m-2">Suscribirse</a>
+            <a href="{{ route('rutinas.create') }}" class="navbar-item text-decoration-none m-2">Crear entrenamiento</a>
         </div>
         <div class="d-flex justify-content-center align-items-center w-25">
             @auth
@@ -70,7 +69,7 @@
     </div>
 
     <!-- Footer -->
-    <footer class="footer mt-auto py-3 bg-light fixed-bottom">
+    <footer class="footer mt-auto py-3 bg-light">
         <div class="container">
             <span class="text-muted">Nutrición Algar ® Todos los derechos reservados. Creado con 💜 por Ismael</span>
         </div>

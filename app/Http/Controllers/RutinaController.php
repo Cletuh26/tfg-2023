@@ -29,8 +29,23 @@ class RutinaController extends Controller
      */
     public function create()
     {
-        // $ejercicios = EjercicioModel::all();
-        $ejercicios = [];
+        $ejercicios = EjercicioModel::all();
+        // $ejercicios = [];
+        // Cambiar las rutas de las imagenes
+        // dd($ejercicios);
+        foreach ($ejercicios as $ejercicio) {
+            $rutaImagenTmp = explode('/',$ejercicio['imagen']);
+            $rutaImagenEjercicio = '';
+            for ($i=3; $i <= (count($rutaImagenTmp)-1); $i++) {
+                if($i == count($rutaImagenTmp)-1){
+                    $rutaImagenEjercicio .= $rutaImagenTmp[$i];
+                }else{
+                    $rutaImagenEjercicio .= $rutaImagenTmp[$i] . "/";
+                }
+            }
+            
+            $ejercicio['imagen'] = $rutaImagenEjercicio;
+        }
 
         if(count($ejercicios) == 0){
             $ejercicios = [];

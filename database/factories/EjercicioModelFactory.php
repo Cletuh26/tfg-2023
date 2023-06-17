@@ -20,7 +20,7 @@ class EjercicioModelFactory extends Factory
             'nombre' => fake()->name(),
             'descripcion' => fake()->text(),
             'imagen' => fake()->image('storage/app/public/images/ejercicios'),
-            'tipo' => fake()->randomElement(['pierna','pecho','espalda','hombro','brazo','gluteos']),
+            'tipo' => fake()->randomElement(['pierna','pecho','espalda','hombro','brazo']),
             'series' => fake()->numberBetween(1,5),
             'repeticiones' => fake()->numberBetween(8,12),
             'duracion' => fake()->numberBetween(1,60),
