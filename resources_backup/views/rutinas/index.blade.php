@@ -1,5 +1,6 @@
-@include('partials.base')
+@extends('layout.base')
 
+@section('content')
 <div class="row w-100">
     <div class="col-12 mt-3 text-center">
         <div>
@@ -48,3 +49,4 @@
     </div>
     @endif
 </div>
+@endsection

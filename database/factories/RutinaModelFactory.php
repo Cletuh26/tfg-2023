@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Models\UsuarioModel;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Facades\Storage;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\RutinaModel>
@@ -23,7 +24,7 @@ class RutinaModelFactory extends Factory
             'nombre' => fake()->word(),
             'descripcion' => fake()->realText(),
             'tipo' => fake()->randomElement(['equilibrada','definicion','volumen']),
-            'imagen' => fake()->image('storage/app/public/images/rutinas'),
+            'imagen' => fake()->image(),
             'usuario_id' => fake()->randomElement($usuarios)->id
         ];
     }
