@@ -1,25 +1,4 @@
-<!DOCTYPE html>
-<html lang="es">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-
-    <!-- Favicon -->
-    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
-
-    <!-- Bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-
-    <!-- FontAwesome -->
-    <script src="https://kit.fontawesome.com/02a25bbc21.js" crossorigin="anonymous"></script>
-
-    <!-- CSS -->
-    <link rel="stylesheet" href="{{ asset('css/app.css')}}">
-
-    <title>Nutrición Algar</title>
-</head>
+@include('partials.base')
 
 <body>
     <section class="vh-100 gradient-custom">
@@ -31,10 +10,10 @@
 
                             <div class="mb-md-4 mt-md-1 pb-1">
 
-                                <a href="{{ route('inicio') }}"><img src="{{ Storage::url('images/club-algar-blanco.png') }}" alt="Logo" class="navbar-item pb-md-3"></a>
+                                <a href="{{ route('inicio') }}"><img src="{{ asset('assets/img/club-algar-blanco.png') }}" alt="Logo" class="navbar-item pb-md-3"></a>
 
                                 <h2 class="fw-bold mb-2 text-uppercase">Registro</h2>
-                                <p class="text-primary mb-2">Rellena los campos para completar el registro</p>
+                                <p class="font-nutricion mb-2">Rellena los campos para completar el registro</p>
 
                                 <form action="{{ route('registroProcesado') }}" method="POST">
                                     @csrf
@@ -74,7 +53,7 @@
                             </div>
 
                             <div>
-                                <p class="mb-0">¿Ya tienes cuenta? <a href="{{ route('login') }}" class="text-primary fw-bold">Iniciar sesión</a>
+                                <p class="mb-0">¿Ya tienes cuenta? <a href="{{ route('login') }}" class="font-nutricion link-login fw-bold">Iniciar sesión</a>
                                 </p>
                             </div>
 

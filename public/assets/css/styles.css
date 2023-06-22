@@ -10800,3 +10800,24 @@ header.masthead .post-heading .meta a {
     font-size: 2.25rem;
   }
 }
+
+.gradient-custom {
+  background: rgb(0,212,255);
+  background: linear-gradient(90deg, rgba(0,212,255,1) 0%, rgba(0,153,184,1) 100%);
+}
+
+.font-nutricion{
+  color: var(--bs-nutricion-principal);
+}
+
+.link-registro:hover, .link-login:hover{
+  color: white;
+}
+
+.mt-25{
+  margin-top: 10rem;
+}
+
+.color-nutricion{
+  background-color: var(--bs-nutricion-principal);
+}

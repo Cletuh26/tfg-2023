@@ -1,14 +1,17 @@
 @include('partials.base')
 
-<main class="row w-100">
-    <div class="col-12 mt-3 text-center">
-        <div>
-            <h2 class="text-dark">Rutinas predefinidas</h2>
-        </div>
-    </div>
+<body class="color-nutricion">
+    @include('partials.navbar')
 
-    <div class="col-12 mt-4 d-flex justify-content-center align-items-center gap-5 mb-3">
-        @foreach($rutinasDefecto as $rutinaD)
+    <main class="">
+        <div class="col-12 text-center">
+            <div>
+                <h2 class="text-dark mt-25">Mi cuenta</h2>
+            </div>
+        </div>
+
+        <div class="col-12 mt-4 d-flex justify-content-center align-items-center gap-5 mb-3">
+            {{-- @foreach ($rutinasDefecto as $rutinaD)
         <div class="card" style="width: 18rem;">
             <img src="{{ Storage::url($rutinaD->imagen) }}" class="card-img-top" alt="Imagen rutina">
             <div class="card-body">
@@ -17,16 +20,16 @@
                 <a href="{{ route('rutinas.index') }}" class="btn btn-primary">Ver rutina</a>
             </div>
         </div>
-        @endforeach
-    </div>
-
-    <div class="col-12 mt-5 text-center">
-        <div>
-            <h2 class="text-dark">Rutinas personalizadas</h2>
+        @endforeach --}}
         </div>
-    </div>
 
-    @if(count($rutinasPersonalizadas) < 1)
+        <div class="col-12 mt-5 text-center">
+            <div>
+                <h2 class="text-dark">Rutinas personalizadas</h2>
+            </div>
+        </div>
+
+        {{-- @if (count($rutinasPersonalizadas) < 1)
     <div class="col-12 mt-1 text-center">
         <div>
             <h5 class="text-danger">No se han encontrado rutinas personalizadas</h5>
@@ -35,7 +38,7 @@
     </div>
     @else
     <div class="col-12 mt-4 d-flex justify-content-center align-items-center gap-5 mb-3">
-        @foreach($rutinasPersonalizadas as $rutinaP)
+        @foreach ($rutinasPersonalizadas as $rutinaP)
         <div class="card" style="width: 18rem;">
             <img src="{{ Storage::url($rutinaP->imagen) }}" class="card-img-top" alt="Imagen rutina">
             <div class="card-body">
@@ -46,5 +49,8 @@
         </div>
         @endforeach
     </div>
-    @endif
-</main>
+    @endif --}}
+    </main>
+
+    @include('partials.footer')
+</body>

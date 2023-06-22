@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\UsuarioModel;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 
@@ -12,7 +13,7 @@ class UsuarioController extends Controller
      */
     public function index()
     {
-        return view('index');
+        return view('usuarios.index');
     }
 
     /**
@@ -36,7 +37,9 @@ class UsuarioController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $usuario = UsuarioModel::find($id);
+
+        return view('usuario.show', $usuario);
     }
 
     /**
