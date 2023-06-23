@@ -20,9 +20,10 @@ class UsuarioModelFactory extends Factory
         $telefono = '6' . fake()->numerify('##') . ' ' . fake()->numerify('###') . ' ' . fake()->numerify('###');
         $email = fake()->email();
         $nick = explode('@',$email)[0];
-        $peso = fake()->randomFloat(2,50,150);
-        $altura = fake()->randomFloat(2,1,2);
-        $altura2 = $altura * $altura;
+        $peso = fake()->numberBetween(50,150);
+        $altura = fake()->numberBetween(150,200);
+        $alturaDec = $altura / 100;
+        $altura2 = $alturaDec * $alturaDec;
         $imc = round($peso / ($altura2),2);
 
         $gestores = GestorModel::all();

@@ -20,7 +20,7 @@ class RutinaController extends Controller
         $usuario = UsuarioModel::findOrFail(Auth::user()->id);
         $rutinasDefecto = RutinaDefectoModel::all();
         $rutinasPersonalizadas = $usuario->rutinas;
-        // dd($rutinasPersonalizadas);
+
         return view('rutinas.index', ['rutinasDefecto' => $rutinasDefecto, 'rutinasPersonalizadas' => $rutinasPersonalizadas]);
     }
 

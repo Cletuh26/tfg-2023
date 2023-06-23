@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\UsuarioModel;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class UsuarioController extends Controller
 {
@@ -13,7 +14,8 @@ class UsuarioController extends Controller
      */
     public function index()
     {
-        return view('usuarios.index');
+        $usuarios = UsuarioModel::all();
+        return view('usuarios.index', ['usuarios' => $usuarios]);
     }
 
     /**
@@ -35,19 +37,21 @@ class UsuarioController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Request $request)
     {
-        $usuario = UsuarioModel::find($id);
+        $usuario = UsuarioModel::findOrFail($request->id);
 
-        return view('usuario.show', $usuario);
+        return view('usuarios.show', ['usuario' => $usuario]);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Request $request)
     {
-        //
+        $usuario = UsuarioModel::findOrFail($request->id);
+
+        return view('usuarios.edit', ['usuario' => $usuario]);
     }
 
     /**
@@ -55,7 +59,37 @@ class UsuarioController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $idUsuario = $id;
+
+        $datosNuevos = $request->validate([
+            'nombre' => 'nullable',
+            'apellidos' => 'nullable',
+            'email' => 'required|unique:usuarios,email,'.$idUsuario,
+            'telefono' => 'nullable',
+            'fecha_nacimiento' => 'nullable',
+            'peso' => 'nullable|max:400',
+            'altura' => 'nullable|numeric|min:0|max:300'
+        ]);
+        $usuario = UsuarioModel::findOrFail($idUsuario);
+
+        $usuario->nombre = $datosNuevos['nombre']??null;
+        $usuario->apellidos = $datosNuevos['apellidos']??null;
+        $usuario->email = $datosNuevos['email'];
+        $usuario->telefono = $datosNuevos['telefono']??null;
+        $usuario->fecha_nacimiento = $datosNuevos['fecha_nacimiento']??null;
+        $usuario->peso = $datosNuevos['peso']??null;
+        $usuario->altura = $datosNuevos['altura']??null;
+        
+        // Si introducen o modifican peso y altura, que se calcule el IMC
+        if(!is_null($usuario->peso) && !is_null($usuario->altura)){
+            if(is_numeric($usuario->peso) && is_numeric($usuario->altura)){
+                $usuario->imc = $this->calcularImc($usuario->peso, $usuario->altura);
+            }
+        }
+
+        $usuario->save();
+
+        return view('usuarios.show', ['id' => $idUsuario, 'usuario' => $usuario])->with('success','Cambios guardados correctamente');
     }
 
     /**
@@ -64,5 +98,15 @@ class UsuarioController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    private function calcularImc(int $peso, int $altura): int
+    {
+        $alturaDec = $altura / 100;
+        $altura2 = $alturaDec * $alturaDec;
+
+        $imc = round($peso / ($altura2),2);
+
+        return $imc;
     }
 }

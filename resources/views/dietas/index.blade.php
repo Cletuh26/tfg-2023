@@ -1,4 +1,4 @@
-@extends('layout.base')
+@extends('partials.base')
 
 @section('content')
 <div class="row">

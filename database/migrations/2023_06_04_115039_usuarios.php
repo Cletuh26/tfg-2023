@@ -17,12 +17,15 @@ return new class extends Migration
             $table->bigIncrements('id');
             $table->string('dni')->unique();
             $table->string('email')->unique();
+            $table->string('nombre')->nullable();
+            $table->string('apellidos')->nullable();
+            $table->string('fecha_nacimiento')->nullable();
             $table->string('telefono')->nullable();
             $table->string('nick');
             $table->string('password');
             $table->enum('estado',['alta','baja']);
-            $table->float('peso')->nullable();
-            $table->float('altura')->nullable();
+            $table->integer('peso')->nullable();
+            $table->integer('altura')->nullable();
             $table->float('imc')->nullable();
             $table->bigInteger('gestor_id')->unsigned();
             $table->foreign('gestor_id')->references('id')->on('gestores');
