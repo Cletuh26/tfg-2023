@@ -24,14 +24,6 @@
                     <li class="nav-item">
                         <a class="nav-link px-lg-3 py-3 py-lg-4 text-dark" href="{{ route('usuarios.show', Auth::user()->id) }}">{{ ucfirst(Auth::user()->nick) }}</a>
                     </li>
-                    {{-- <li class="nav-item">
-                        <form action="{{ route('logout') }}" method="post" class="">
-                            @csrf
-                            <a class="nav-link px-lg-3  py-lg-4" href="#"
-                                onclick="this.closest('form').submit()">{{ ucfirst(Auth::user()->nick) }} <i
-                                    class="fa-solid fa-right-to-bracket text-white"></i></a>
-                        </form>
-                    </li> --}}
                 @else
                     <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{{ route('login') }}">Iniciar
                             sesión</a>

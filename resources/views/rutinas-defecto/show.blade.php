@@ -3,26 +3,11 @@
 <body>
     @include('partials.navbar-dark')
 
-    @if (session('rutinaBorrada'))
-        <div class="position-fixed top-0 end-0 p-3" style="z-index: 1050">
-            <div class="toast show" role="alert" aria-live="assertive" aria-atomic="true">
-                <div class="toast-header">
-                    <strong class="me-auto">Información</strong>
-                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-                </div>
-                <div class="toast-body">
-                    {{ session('rutinaBorrada') }} <i class="fa-solid fa-check" style="color: #2fa518;"></i>
-                </div>
-            </div>
-        </div>
-    @endif
-        
     <main>
         <div class="col-12 text-center">
             <div>
                 <h2 class="text-dark mt-15 mb-4">Información de la rutina <button class="btn btn-primary btn-sm"><a
-                            href="{{ route('rutinas.edit', $rutina->id) }}" class="text-white">Editar</a></button>
-                </h2>
+                    href="{{ route('rutinas.edit', $rutinaD->id) }}" class="text-white">Editar</a></button></h2>
             </div>
         </div>
         <hr class="mt-0 mb-4">
@@ -30,21 +15,21 @@
             <div class="row">
                 <div class="col-xl-12 m-auto">
                     <!-- Rutina card-->
-                    <form action="{{ route('rutinas.edit', $rutina->id) }}" method="post">
+                    <form action="{{ route('rutinas-defecto.edit', $rutinaD->id) }}" method="post">
                         @csrf
 
                         <!-- Form Group (tipo)-->
                         <div class="col-md-12">
                             <label class="small mb-1" for="tipo">Tipo</label>
                             <input class="form-control" id="tipo" name="tipo" type="text"
-                                placeholder="Introduce el tipo" value="{{ old('tipo', $rutina->tipo) }}" disabled>
+                                placeholder="Introduce el tipo" value="{{ $rutinaD->tipo }}" disabled>
                         </div>
 
                         <!-- Form Group (descripcion)-->
                         <div class="col-md-12">
                             <label class="small mb-1" for="descripcion">Descripción</label>
                             <p class="m-0 col-md-12">
-                                <textarea class="form-control" name="descripcion" id="descripcion" cols="68" rows="3" disabled>{{ $rutina->descripcion }}</textarea>
+                                <textarea class="form-control" name="descripcion" id="descripcion" cols="68" rows="3" disabled>{{ $rutinaD->descripcion }}</textarea>
                             </p>
                         </div>
 
@@ -54,37 +39,45 @@
                             <div class="col-md-12">
                                 <label class="small mb-1" for="numeroEjercicios">Número de ejercicios</label>
                                 <input class="form-control" id="numeroEjercicios" name="numeroEjercicios" type="text"
-                                    value="{{ $rutina->ejercicios->count() }}" disabled>
+                                    value="{{ $rutinaD->ejercicios->count() }}" disabled>
                             </div>
                         </div>
                     </form>
+                </div>
+
+                <div class="col-xl-12 m-auto">
                     <!-- Ejercicios details -->
                     <div>
-                        <h2 class="text-dark mt-5 mb-1 text-center">Ejercicios
+                        <h2 class="text-dark mt-5 mb-1 text-center">Ejercicios</h2>
                     </div>
-
-                    <hr class="mt-0 mb-3">
 
                     <table class="table mt-3">
                         <thead>
-                            <tr class="text-center align-middle small">
+                            <tr class="text-center align-middle">
                                 <th>Imagen</th>
                                 <th>Tipo</th>
                                 <th>Descripción</th>
                                 <th>Series</th>
                                 <th>Repeticiones</th>
                                 <th>Duración</th>
+                                <th>Opciones</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($rutina->ejercicios as $ejercicio)
-                                <tr class="text-center align-middle small">
+                            @foreach ($rutinaD->ejercicios as $ejercicio)
+                                <tr class="text-center align-middle">
                                     <td><img src="{{ '' }}" alt="Imagen ejercicio"></td>
                                     <td>{{ ucfirst($ejercicio->tipo) }}</td>
                                     <td>{{ $ejercicio->descripcion }}</td>
                                     <td>{{ $ejercicio->series }}</td>
                                     <td>{{ $ejercicio->repeticiones }}</td>
                                     <td>{{ $ejercicio->duracion }} min</td>
+                                    <td>
+                                        <button type="button" class="btn btn-danger btn-sm" disabled>
+                                            <i class="fas fa-trash"></i><a href="#"
+                                                class="text-white">Eliminar</a>
+                                        </button>
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>

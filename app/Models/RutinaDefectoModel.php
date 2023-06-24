@@ -14,6 +14,12 @@ class RutinaDefectoModel extends Model
 
     public function usuarios(): BelongsToMany
     {
-        return $this->belongsToMany(UsuarioModel::class,'rutinas_defecto_usuarios');
+        return $this->belongsToMany(UsuarioModel::class,'rutinas_defecto_usuarios', 'rutina_defecto_id', 'usuario_id')
+        ->withPivot('usuario_id', 'rutina_defecto_id');
+    }
+
+    public function ejercicios(): BelongsToMany
+    {
+        return $this->belongsToMany(EjercicioModel::class,'rutinas_defecto_ejercicios', 'rutina_defecto_id', 'ejercicio_id');
     }
 }

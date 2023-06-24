@@ -16,12 +16,13 @@
                     @foreach ($rutinasDefecto as $rutinaD)
                         <div class="col-lg-4 mb-4">
                             <div class="card">
-                                <img src="{{ asset('assets/img/rutinas_defecto/equilibrada.jpeg') }}"
-                                    alt="Imagen rutina" class="card-img-top">
+                                <img src="{{ asset('assets/img/rutinas_defecto/equilibrada.jpeg') }}" alt="Imagen rutina"
+                                    class="card-img-top">
                                 <div class="card-body">
                                     <h5 class="card-title">{{ ucfirst($rutinaD->tipo) }}</h5>
                                     <p class="card-text">{{ $rutinaD->descripcion }}</p>
-                                    <a href="{{ route('rutinas.show', $rutinaD->id) }}" class="btn btn-outline-primary btn-md">Ver rutina</a>
+                                    <a href="{{ route('rutinas-defecto.show', $rutinaD->id) }}"
+                                        class="btn btn-outline-primary btn-md">Ver rutina</a>
                                     {{-- <a href="" class="btn btn-outline-danger btn-sm"><i class="far fa-heart"></i></a> --}}
                                 </div>
                             </div>
@@ -37,11 +38,11 @@
             </div>
         </div>
 
-        @if (count($rutinasPersonalizadas) < 1)
+        @if (count($rutinasPersonalizadas) == 0)
             <div class="col-12 mt-1 text-center">
                 <div>
                     <h5 class="text-danger">No se han encontrado rutinas personalizadas</h5>
-                    <a href="{{ route('rutinas.create') }}" class="btn btn-outline-success mb-5"><i
+                    <a href="{{ route('rutinas.create') }}" class="btn btn-outline-success mb-5 mt-3"><i
                             class="fa-solid fa-plus"></i>
                         Crear nueva rutina</a>
                 </div>
@@ -54,7 +55,8 @@
                         <div class="card-body">
                             <h4 class="card-title">{{ ucfirst($rutinaP->tipo) }}</h4>
                             <p class="card-text">{{ ucfirst($rutinaP->descripcion) }}</p>
-                            <a href="{{ route('rutinas.show', $rutinaP->id) }}" class="btn btn-outline-primary">Ver rutina</a>
+                            <a href="{{ route('rutinas.show', $rutinaP->id) }}" class="btn btn-outline-primary">Ver
+                                rutina</a>
                         </div>
                     </div>
                 @endforeach

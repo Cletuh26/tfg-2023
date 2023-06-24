@@ -14,6 +14,11 @@ class EjercicioModel extends Model
 
     public function rutinas(): BelongsToMany
     {
-        return $this->belongsToMany(Rutina::class, 'rutinas_ejercicios');
+        return $this->belongsToMany(RutinaModel::class, 'rutinas_ejercicios', 'ejercicio_id', 'rutina_id');
+    }
+
+    public function rutinasDefecto(): BelongsToMany
+    {
+        return $this->belongsToMany(RutinaDefectoModel::class,'rutinas_defecto_ejercicios', 'ejercicio_id', 'rutina_defecto_id');
     }
 }

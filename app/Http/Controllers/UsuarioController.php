@@ -93,6 +93,8 @@ class UsuarioController extends Controller
             if(is_numeric($usuario->peso) && is_numeric($usuario->altura)){
                 $usuario->imc = $this->calcularImc($usuario->peso, $usuario->altura);
             }
+        }else{
+            $usuario->imc = null;
         }
 
         $usuario->save();

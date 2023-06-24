@@ -2,13 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\EjercicioModel;
-use App\Models\RutinaDefectoModel;
 use App\Models\RutinaModel;
-use App\Models\UsuarioModel;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
-use Illuminate\Support\Facades\Auth;
 
 class RutinaController extends Controller
 {
@@ -17,11 +13,7 @@ class RutinaController extends Controller
      */
     public function index()
     {
-        $usuario = UsuarioModel::findOrFail(Auth::user()->id);
-        $rutinasDefecto = RutinaDefectoModel::all();
-        $rutinasPersonalizadas = $usuario->rutinas;
-
-        return view('rutinas.index', ['rutinasDefecto' => $rutinasDefecto, 'rutinasPersonalizadas' => $rutinasPersonalizadas]);
+        //
     }
 
     /**
@@ -29,29 +21,7 @@ class RutinaController extends Controller
      */
     public function create()
     {
-        $ejercicios = EjercicioModel::all();
-        // $ejercicios = [];
-        // Cambiar las rutas de las imagenes
-        // dd($ejercicios);
-        foreach ($ejercicios as $ejercicio) {
-            $rutaImagenTmp = explode('/',$ejercicio['imagen']);
-            $rutaImagenEjercicio = '';
-            for ($i=3; $i <= (count($rutaImagenTmp)-1); $i++) {
-                if($i == count($rutaImagenTmp)-1){
-                    $rutaImagenEjercicio .= $rutaImagenTmp[$i];
-                }else{
-                    $rutaImagenEjercicio .= $rutaImagenTmp[$i] . "/";
-                }
-            }
-            
-            $ejercicio['imagen'] = $rutaImagenEjercicio;
-        }
-
-        if(count($ejercicios) == 0){
-            $ejercicios = [];
-        }
-
-        return view('rutinas.create',['ejercicios' => $ejercicios]);
+        return view('rutinas.create');
     }
 
     /**
@@ -59,21 +29,7 @@ class RutinaController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'nombre' => 'required',
-            'tipo' => 'required',
-            'imagen' => 'max:512'
-        ]);
-
-        if($request['imagen'] == null || $request['imagen'] == "" || empty($request['imagen'])){
-            $request['imagen'] = 'images/rutinas/defecto.jpeg';
-        }else{
-            $request['imagen'] = 'storage/app/public/images/rutinas/' . $request->imagen;
-        }
-        $request['usuario_id'] = Auth::user()->id;
-
-        RutinaModel::create($request->all());
-        return redirect('rutinas')->with('rutinaNueva', 'Rutina creada correctamente.');
+        //
     }
 
     /**
@@ -81,7 +37,7 @@ class RutinaController extends Controller
      */
     public function show(string $id)
     {
-        $rutina = RutinaDefectoModel::find($id);
+        $rutina = RutinaModel::find($id);
 
         return view('rutinas.show', ['rutina' => $rutina]);
     }
@@ -91,7 +47,12 @@ class RutinaController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $rutina = RutinaModel::find($id);
+
+        $numeroEjercicios = $rutina->ejercicios->count();
+        $ejerciciosRutina = $rutina->ejercicios;
+
+        return view('rutinas.edit', ['rutina' => $rutina, 'numeroEjercicios' => $numeroEjercicios, 'ejerciciosRutina' => $ejerciciosRutina]);
     }
 
     /**
@@ -105,8 +66,30 @@ class RutinaController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Request $request, string $id)
     {
-        //
+
+    }
+
+    public function borrarEjercicio(Request $request, string $id)
+    {
+        $rutina = RutinaModel::findOrFail($id);
+
+        // Obtener el ID del ejercicio a eliminar
+        $ejercicioId = $request->input('ejercicio_id');
+
+        // Eliminar la relación entre la rutina y el ejercicio
+        $rutina->ejercicios()->detach($ejercicioId);
+
+        // Comprobar si no quedan más ejercicios en la rutina
+        if ($rutina->ejercicios->isEmpty()) {
+            // Si no quedan más ejercicios, eliminar la rutina
+            $rutina->delete();
+            // Opcionalmente, puedes redirigir a una página o realizar otras acciones
+
+            return redirect()->route('rutinas.index')->with('rutinaBorrada', 'La rutina se ha borrado al no tener más ejercicios.');
+        }else{
+            return redirect()->route('rutinas.edit', $rutina->id)->with('ejercicioBorrado', 'Ejercicio eliminado de la rutina.');
+        }
     }
 }
