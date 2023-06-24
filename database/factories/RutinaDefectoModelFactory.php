@@ -16,10 +16,13 @@ class RutinaDefectoModelFactory extends Factory
      */
     public function definition(): array
     {
+        $imagenRandom = fake()->image();
+        $imagenRandom = basename($imagenRandom);
+        
         return [
             'descripcion' => fake()->realText(),
             'tipo' => fake()->randomElement(['equilibrada','volumen','definicion']),
-            'imagen' => fake()->image('storage/app/public/images/rutinas_defecto')
+            'imagen' => $imagenRandom
         ];
     }
 }

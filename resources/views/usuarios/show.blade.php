@@ -3,14 +3,25 @@
 <body>
     @include('partials.navbar-dark')
 
-    @if (session('success'))
-    <!-- TODO: Mandar mensaje para decirle al usuario que se ha editado correctamente -->
+    @if (session('editado_correcto'))
+        <!-- TODO: Mandar mensaje para decirle al usuario que se ha editado correctamente -->
+        <div class="position-fixed top-0 end-0 p-3" style="z-index: 1050">
+            <div class="toast show" role="alert" aria-live="assertive" aria-atomic="true">
+                <div class="toast-header">
+                    <strong class="me-auto">Información</strong>
+                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+                <div class="toast-body">
+                    {{ session('editado_correcto') }} <i class="fa-solid fa-check" style="color: #2fa518;"></i>
+                </div>
+            </div>
+        </div>
     @endif
 
     <main>
         <div class="col-12 text-center">
             <div>
-                <h2 class="text-dark mt-15 mb-4">Mi cuenta</h2>
+                <h2 class="text-dark mt-15 mb-4">MI CUENTA</h2>
             </div>
         </div>
 
@@ -99,34 +110,72 @@
                                     </div>
                                 </div>
                                 <!-- Save changes button-->
-                                <button class="btn btn-primary" type="submit">Editar</button>
+                                <button class="btn btn-outline-primary" type="submit">Editar</button>
                             </form>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-xl-4">
-                    <!-- Credentials card-->
-                    <div class="card mb-4 mb-xl-0">
+                <div class="col-xl-4 row flex-column">
+                    <!-- Logout card-->
+                    <div class="card mb-4 mb-xl-0 p-0">
+                        <div class="card-header color-nutricion text-white">Opciones</div>
+                        <div class="card-body text-center">
+                            <form action="{{ route('logout') }}" method="post">
+                                @csrf
+                                <!-- Save changes button-->
+                                <button class="btn btn-outline-danger mt-3" type="submit">Cerrar sesión</button>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- Password card-->
+                    <div class="card mb-4 mb-xl-0 mt-3 p-0">
                         <div class="card-header color-nutricion text-white">Cambiar contraseña</div>
                         <div class="card-body text-center">
-                            <form>
-                                <!-- Form Group (contraseña)-->
-                                <div class="col-md-12">
-                                    <label class="small mb-1" for="password">Contraseña</label>
-                                    <input class="form-control" id="password" type="password"
-                                        placeholder="Introduce la nueva contraseña" value="{{ old('password') }}">
-                                </div>
-                                <!-- Form Group (repetir contraseña nueva)-->
-                                <div class="col-md-12 mt-3">
-                                    <label class="small mb-1" for="confirm_password">Confirmar nueva
-                                        contraseña</label>
-                                    <input class="form-control" id="confirm_password" type="text"
-                                        placeholder="Introduce la nueva contraseña de nuevo">
-                                </div>
+                            <form action="{{ route('usuarios.editPass', Auth::user()->id) }}" method="post">
+                                @csrf
                                 <!-- Save changes button-->
-                                <button class="btn btn-primary mt-3" type="button">Restablecer contraseña</button>
+                                <button class="btn btn-outline-primary mt-3" type="submit">Modificar</button>
                             </form>
+                        </div>
+                    </div>
+
+                    <!-- IMC card-->
+                    <div class="card mb-4 mb-xl-0 mt-3 p-0">
+                        <div class="card-header color-nutricion text-white">Índice de Masa Corporal (IMC)</div>
+                        <div class="card-body text-center">
+                            @if (!is_null($usuario->imc))
+                            <p class="fs-1 mb-1 mt-3"><strong>{{ $usuario->imc }}</strong></p>
+                                <small>
+                                    @switch($usuario->imc)
+                                    @case($usuario->imc < 18.5)
+                                        <p class="mt-1 text-danger">Bajo peso</p>
+                                        @break
+                                
+                                    @case($usuario->imc >= 18.5 && $usuario->imc <= 24.9)
+                                        <p class="mt-1 text-success">Saludable</p>
+                                        @break
+                                
+                                    @case($usuario->imc >= 25 && $usuario->imc <= 29.9)
+                                        <p class="mt-1 text-warning">Sobrepeso</p>
+                                        @break
+                                
+                                    @case($usuario->imc >= 30 && $usuario->imc <= 39.9)
+                                        <p class="mt-1 text-orange">Obesidad</p>
+                                        @break
+                                
+                                    @case($usuario->imc >= 40)
+                                        <p class="mt-1 mb-2 text-danger">Obesidad severa</p>
+                                        @break
+                                
+                                    @default
+                                        <p>No se ha calculado el IMC</p>
+                                @endswitch
+                                </small>
+                            @else
+                                <p class="text-danger">No se pueden mostrar los datos. Verifica que hayas introducido peso y altura.</p>
+                            @endif
                         </div>
                     </div>
                 </div>

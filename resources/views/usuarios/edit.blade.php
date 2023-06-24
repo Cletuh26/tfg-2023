@@ -6,7 +6,7 @@
     <main>
         <div class="col-12 text-center">
             <div>
-                <h2 class="text-dark mt-15 mb-4">Mi cuenta</h2>
+                <h2 class="text-dark mt-15 mb-4">MI CUENTA</h2>
             </div>
         </div>
 
@@ -30,8 +30,7 @@
                                         <label class="small mb-1" for="nick">Nombre de usuario</label>
                                         <input class="form-control" id="nick" name="nick" type="text"
                                             placeholder="Introduce el nombre de usuario"
-                                            value="{{ old('nick', $usuario->nick) }}"
-                                            disabled>
+                                            value="{{ old('nick', $usuario->nick) }}" disabled>
                                     </div>
                                     <!-- Form Group (dni)-->
                                     <div class="col-md-6">
@@ -103,7 +102,7 @@
                                     </div>
                                 </div>
                                 <!-- Save changes button-->
-                                <button class="btn btn-primary" type="submit">Guardar cambios</button>
+                                <button class="btn btn-outline-primary" type="submit">Guardar cambios</button>
                             </form>
                         </div>
                     </div>
@@ -114,22 +113,10 @@
                     <div class="card mb-4 mb-xl-0">
                         <div class="card-header color-nutricion text-white">Cambiar contraseña</div>
                         <div class="card-body text-center">
-                            <form>
-                                <!-- Form Group (contraseña)-->
-                                <div class="col-md-12">
-                                    <label class="small mb-1" for="password">Contraseña</label>
-                                    <input class="form-control" id="password" type="password"
-                                        placeholder="Introduce la nueva contraseña" value="{{ old('password') }}">
-                                </div>
-                                <!-- Form Group (repetir contraseña nueva)-->
-                                <div class="col-md-12 mt-3">
-                                    <label class="small mb-1" for="confirm_password">Confirmar nueva
-                                        contraseña</label>
-                                    <input class="form-control" id="confirm_password" type="text"
-                                        placeholder="Introduce la nueva contraseña de nuevo">
-                                </div>
+                            <form action="{{ route('usuarios.editPass', Auth::user()->id) }}" method="post">
+                                @csrf
                                 <!-- Save changes button-->
-                                <button class="btn btn-primary mt-3" type="button">Restablecer contraseña</button>
+                                <button class="btn btn-outline-primary mt-3" type="submit">Modificar</button>
                             </form>
                         </div>
                     </div>

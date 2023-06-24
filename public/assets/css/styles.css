@@ -81,6 +81,7 @@
   /* Colores personalizados */
   --bs-nutricion-principal: #009de2;
   --bs-nutricion-secundario: white;
+  --bs-texto-naranja: var(--bs-orange);
 }
 
 *,
@@ -7782,6 +7783,11 @@ textarea.form-control-lg {
 .text-warning {
   --bs-text-opacity: 1;
   color: rgba(var(--bs-warning-rgb), var(--bs-text-opacity)) !important;
+}
+
+.text-orange {
+  --bs-text-opacity: 1;
+  color: var(--bs-texto-naranja) !important;
 }
 
 .text-danger {

@@ -83,7 +83,7 @@ class RutinaController extends Controller
     {
         $rutina = RutinaDefectoModel::find($id);
 
-        return view('rutinas.show', $rutina);
+        return view('rutinas.show', ['rutina' => $rutina]);
     }
 
     /**

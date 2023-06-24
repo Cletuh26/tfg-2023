@@ -17,31 +17,31 @@
     @endif
 
     @if (session('login'))
-    <div class="position-fixed top-0 end-0 p-3" style="z-index: 1050">
-        <div class="toast show" role="alert" aria-live="assertive" aria-atomic="true">
-            <div class="toast-header">
-                <strong class="me-auto">Información</strong>
-                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-            </div>
-            <div class="toast-body">
-                {{ session('login') }} <i class="fa-solid fa-check" style="color: #2fa518;"></i>
+        <div class="position-fixed top-0 end-0 p-3" style="z-index: 1050">
+            <div class="toast show" role="alert" aria-live="assertive" aria-atomic="true">
+                <div class="toast-header">
+                    <strong class="me-auto">Información</strong>
+                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+                <div class="toast-body">
+                    {{ session('login') }} <i class="fa-solid fa-check" style="color: #2fa518;"></i>
+                </div>
             </div>
         </div>
-    </div>
     @endif
 
     @if (session('registro'))
-    <div class="position-fixed top-0 end-0 p-3" style="z-index: 1050">
-        <div class="toast show" role="alert" aria-live="assertive" aria-atomic="true">
-            <div class="toast-header">
-                <strong class="me-auto">Información</strong>
-                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-            </div>
-            <div class="toast-body">
-                {{ session('registro') }} <i class="fa-solid fa-check" style="color: #2fa518;"></i>
+        <div class="position-fixed top-0 end-0 p-3" style="z-index: 1050">
+            <div class="toast show" role="alert" aria-live="assertive" aria-atomic="true">
+                <div class="toast-header">
+                    <strong class="me-auto">Información</strong>
+                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+                <div class="toast-body">
+                    {{ session('registro') }} <i class="fa-solid fa-check" style="color: #2fa518;"></i>
+                </div>
             </div>
         </div>
-    </div>
     @endif
 
     @include('partials.navbar')
@@ -68,8 +68,7 @@
                     <h5 class="card-title">Rutinas</h5>
                     <p class="card-text">¿Estas intentado agrandar tus músculos? ¿Buscas una rutina para bajar tu
                         peso? Descúbrelas todas y si no, créala.</p>
-                    <a href="{{ route('rutinas.index') }}" class="btn text-white rounded"
-                        style="background-color:#009de2">Más información</a>
+                    <a href="{{ route('rutinas.index') }}" class="btn btn-outline-primary">Más información</a>
                 </div>
             </div>
 
@@ -79,7 +78,7 @@
                     <h5 class="card-title">Dietas</h5>
                     <p class="card-text">Encuentra la dieta que más se ajuste a tus gustos. Si eso no funciona,
                         siempre puedes crear la tuya personalizada!</p>
-                    <a href="#" class="btn text-white rounded" style="background-color:#009de2">Más
+                    <a href="#" class="btn btn-outline-primary">Más
                         información</a>
                 </div>
             </div>
@@ -90,7 +89,7 @@
                     <h5 class="card-title">Ejercicios</h5>
                     <p class="card-text">Explora el listado de ejercicios que ofrecemos. Si no encuentras el que estas
                         buscando, añadelo tu mismo!</p>
-                    <a href="#" class="btn text-white rounded" style="background-color:#009de2">Más
+                    <a href="#" class="btn btn-outline-primary">Más
                         información</a>
                 </div>
             </div>
@@ -101,7 +100,7 @@
                     <h5 class="card-title">Alimentos</h5>
                     <p class="card-text">Disponemos de una amplia variedad de alimentos para hacer unas dietas
                         variadas para cada tipo de persona.</p>
-                    <a href="#" class="btn text-white rounded" style="background-color:#009de2">Más
+                    <a href="#" class="btn btn-outline-primary">Más
                         información</a>
                 </div>
             </div>

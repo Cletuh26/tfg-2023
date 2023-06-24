@@ -20,11 +20,14 @@ class RutinaModelFactory extends Factory
     {
         $usuarios = UsuarioModel::all();
 
+        $imagenRandom = fake()->image();
+        $imagenRandom = basename($imagenRandom);
+
         return [
             'nombre' => fake()->word(),
             'descripcion' => fake()->realText(),
             'tipo' => fake()->randomElement(['equilibrada','definicion','volumen']),
-            'imagen' => fake()->image(),
+            'imagen' => $imagenRandom,
             'usuario_id' => fake()->randomElement($usuarios)->id
         ];
     }

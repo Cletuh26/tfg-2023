@@ -168,8 +168,15 @@ return [
     */
 
     'custom' => [
-        'attribute-name' => [
-            'rule-name' => 'custom-message',
+        'password' => [
+            'required' => 'El campo contraseña es obligatorio.',
+        ],
+        'password_new' => [
+            'required' => 'El campo nueva contraseña es obligatorio.',
+        ],
+        'password_new_confirmation' => [
+            'required' => 'El campo repetir contraseña es obligatorio.',
+            'confirmation' => 'El campo repetir contraseña no coincide con la nueva contraseña.'
         ],
     ],
 

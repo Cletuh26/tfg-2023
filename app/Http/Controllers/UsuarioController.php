@@ -6,6 +6,7 @@ use App\Models\UsuarioModel;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class UsuarioController extends Controller
 {
@@ -54,6 +55,13 @@ class UsuarioController extends Controller
         return view('usuarios.edit', ['usuario' => $usuario]);
     }
 
+    public function editPass(Request $request)
+    {
+        $usuario = UsuarioModel::findOrFail($request->id);
+
+        return view('usuarios.editPass', ['usuario' => $usuario]);
+    }
+
     /**
      * Update the specified resource in storage.
      */
@@ -70,8 +78,8 @@ class UsuarioController extends Controller
             'peso' => 'nullable|max:400',
             'altura' => 'nullable|numeric|min:0|max:300'
         ]);
-        $usuario = UsuarioModel::findOrFail($idUsuario);
 
+        $usuario = UsuarioModel::findOrFail($idUsuario);
         $usuario->nombre = $datosNuevos['nombre']??null;
         $usuario->apellidos = $datosNuevos['apellidos']??null;
         $usuario->email = $datosNuevos['email'];
@@ -89,7 +97,36 @@ class UsuarioController extends Controller
 
         $usuario->save();
 
-        return view('usuarios.show', ['id' => $idUsuario, 'usuario' => $usuario])->with('success','Cambios guardados correctamente');
+        return view('usuarios.show', ['id' => $idUsuario, 'usuario' => $usuario])->with('editado_correcto','Cambios guardados correctamente');
+    }
+
+    public function updatePass(Request $request, string $id)
+    {
+        $idUsuario = $id;
+
+        // Validamos los campos que ha escrito el usuario
+        $datosNuevos = $request->validate([
+            'password' => [
+                'required',
+                function ($attribute, $value, $fail) {
+                    if (!Hash::check($value, Auth::user()->password)) {
+                        $fail('La contraseña actual no coincide.');
+                    }
+                },
+            ],
+            'password_new' => 'required|confirmed',
+            'password_new_confirmation' => 'required'
+        ]);
+
+        // Guardamos los cambios en la base de datos
+        $usuario = UsuarioModel::findOrFail($idUsuario);
+        $usuario->password = Hash::make($datosNuevos['password_new']);
+        $usuario->save();
+
+        // Cerramos la sesión del usuario porque ha modificado la contraseña
+        Auth::logout();
+
+        return redirect('login')->with('password_reset','Contraseña cambiada correctamente. Por favor, inicia sesión nuevamente.');
     }
 
     /**
