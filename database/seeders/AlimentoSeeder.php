@@ -12,6 +12,6 @@ class AlimentoSeeder extends Seeder
      */
     public function run(): void
     {
-        AlimentoModel::factory(5)->create();
+        AlimentoModel::factory(10)->create();
     }
 }

@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Models\UsuarioModel;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Facades\Storage;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\DietaModel>
@@ -17,11 +18,20 @@ class DietaModelFactory extends Factory
      */
     public function definition(): array
     {
+
+        $imagen = fake()->image();
+
+        $nombreImagen = basename($imagen);
+
+        // Mover la imagen a la carpeta deseada
+        Storage::move($imagen, 'public/dietas/' . $nombreImagen);
+        
         $usuarios = UsuarioModel::all();
 
         return [
             'nombre' => fake()->word(),
             'descripcion' => fake()->text('50'),
+            'imagen' => $nombreImagen,
             'tipo' => fake()->randomElement(['equilibrada','deficit','calorica','personalizada']),
             'usuario_id' => fake()->randomElement($usuarios)->id
         ];

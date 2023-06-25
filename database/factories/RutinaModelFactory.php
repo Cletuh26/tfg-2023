@@ -20,14 +20,18 @@ class RutinaModelFactory extends Factory
     {
         $usuarios = UsuarioModel::all();
 
-        $imagenRandom = fake()->image();
-        $imagenRandom = basename($imagenRandom);
+        $imagen = fake()->image();
 
+        $nombreImagen = basename($imagen);
+
+        // Mover la imagen a la carpeta deseada
+        Storage::move($imagen, 'public/rutinas/' . $nombreImagen);
+        
         return [
             'nombre' => fake()->word(),
             'descripcion' => fake()->realText(),
             'tipo' => fake()->randomElement(['equilibrada','definicion','volumen']),
-            'imagen' => $imagenRandom,
+            'imagen' => $nombreImagen,
             'usuario_id' => fake()->randomElement($usuarios)->id
         ];
     }

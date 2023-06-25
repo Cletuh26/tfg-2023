@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Facades\Storage;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\RutinaDefectoModel>
@@ -16,13 +17,19 @@ class RutinaDefectoModelFactory extends Factory
      */
     public function definition(): array
     {
-        $imagenRandom = fake()->image();
-        $imagenRandom = basename($imagenRandom);
+
+        $imagen = fake()->image();
+
+        $nombreImagen = basename($imagen);
+
+        // Mover la imagen a la carpeta deseada
+        Storage::move($imagen, 'public/rutinas-defecto/' . $nombreImagen);
+        
         
         return [
             'descripcion' => fake()->realText(),
             'tipo' => fake()->randomElement(['equilibrada','volumen','definicion']),
-            'imagen' => $imagenRandom
+            'imagen' => $nombreImagen
         ];
     }
 }
