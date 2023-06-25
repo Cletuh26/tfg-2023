@@ -31,4 +31,9 @@ class UsuarioModel extends Model
     {
         return $this->hasMany(RutinaModel::class,'usuario_id','id');
     }
+
+    public function dietas(): HasMany
+    {
+        return $this->hasMany(DietaModel::class,'usuario_id','id');
+    }
 }

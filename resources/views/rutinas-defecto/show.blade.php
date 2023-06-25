@@ -6,8 +6,8 @@
     <main>
         <div class="col-12 text-center">
             <div>
-                <h2 class="text-dark mt-15 mb-4">Información de la rutina <button class="btn btn-primary btn-sm"><a
-                    href="{{ route('rutinas.edit', $rutinaD->id) }}" class="text-white">Editar</a></button></h2>
+                <h2 class="text-dark mt-15 mb-4">Información de la rutina <button class="btn btn-danger btn-sm"><a
+                    href="{{ route('rutinas-defecto.index') }}" class="text-white">Volver</a></button></h2>
             </div>
         </div>
         <hr class="mt-0 mb-4">
@@ -15,7 +15,7 @@
             <div class="row">
                 <div class="col-xl-12 m-auto">
                     <!-- Rutina card-->
-                    <form action="{{ route('rutinas-defecto.edit', $rutinaD->id) }}" method="post">
+                    <form>
                         @csrf
 
                         <!-- Form Group (tipo)-->
@@ -60,7 +60,6 @@
                                 <th>Series</th>
                                 <th>Repeticiones</th>
                                 <th>Duración</th>
-                                <th>Opciones</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -72,12 +71,6 @@
                                     <td>{{ $ejercicio->series }}</td>
                                     <td>{{ $ejercicio->repeticiones }}</td>
                                     <td>{{ $ejercicio->duracion }} min</td>
-                                    <td>
-                                        <button type="button" class="btn btn-danger btn-sm" disabled>
-                                            <i class="fas fa-trash"></i><a href="#"
-                                                class="text-white">Eliminar</a>
-                                        </button>
-                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>

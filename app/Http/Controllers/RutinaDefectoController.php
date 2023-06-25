@@ -17,11 +17,9 @@ class RutinaDefectoController extends Controller
      */
     public function index()
     {
-        $usuario = UsuarioModel::findOrFail(Auth::user()->id);
         $rutinasDefecto = RutinaDefectoModel::all();
-        $rutinasPersonalizadas = $usuario->rutinas;
 
-        return view('rutinas-defecto.index', ['rutinasDefecto' => $rutinasDefecto, 'rutinasPersonalizadas' => $rutinasPersonalizadas]);
+        return view('rutinas-defecto.index', ['rutinasD' => $rutinasDefecto]);
     }
 
     /**
@@ -29,29 +27,7 @@ class RutinaDefectoController extends Controller
      */
     public function create()
     {
-        $ejercicios = EjercicioModel::all();
-        // $ejercicios = [];
-        // Cambiar las rutas de las imagenes
-        // dd($ejercicios);
-        foreach ($ejercicios as $ejercicio) {
-            $rutaImagenTmp = explode('/',$ejercicio['imagen']);
-            $rutaImagenEjercicio = '';
-            for ($i=3; $i <= (count($rutaImagenTmp)-1); $i++) {
-                if($i == count($rutaImagenTmp)-1){
-                    $rutaImagenEjercicio .= $rutaImagenTmp[$i];
-                }else{
-                    $rutaImagenEjercicio .= $rutaImagenTmp[$i] . "/";
-                }
-            }
-            
-            $ejercicio['imagen'] = $rutaImagenEjercicio;
-        }
-
-        if(count($ejercicios) == 0){
-            $ejercicios = [];
-        }
-
-        return view('rutinas-defecto.create',['ejercicios' => $ejercicios]);
+        //
     }
 
     /**
@@ -59,21 +35,7 @@ class RutinaDefectoController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'nombre' => 'required',
-            'tipo' => 'required',
-            'imagen' => 'max:512'
-        ]);
-
-        if($request['imagen'] == null || $request['imagen'] == "" || empty($request['imagen'])){
-            $request['imagen'] = 'images/rutinas/defecto.jpeg';
-        }else{
-            $request['imagen'] = 'storage/app/public/images/rutinas/' . $request->imagen;
-        }
-        $request['usuario_id'] = Auth::user()->id;
-
-        RutinaModel::create($request->all());
-        return redirect('rutinas-defecto')->with('rutinaNueva', 'Rutina creada correctamente.');
+        //
     }
 
     /**

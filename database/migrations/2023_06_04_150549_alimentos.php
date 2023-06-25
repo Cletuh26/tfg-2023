@@ -17,6 +17,7 @@ return new class extends Migration
             $table->bigIncrements('id');
             $table->string('nombre');
             $table->string('descripcion');
+            $table->integer('calorias');
             $table->binary('imagen')->nullable();
             $table->enum('tipo',['comida','bebida','otro']);
             $table->text('datos');

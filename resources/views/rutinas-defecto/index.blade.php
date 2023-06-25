@@ -1,68 +1,64 @@
 @include('partials.base')
 
 <body>
+
     @include('partials.navbar-dark')
 
-    <main class="row w-100 mt-15">
-        <div class="col-12 mt-3 text-center mb-3">
+    {{-- @if (session('rutinaBorrada'))
+        <div class="position-fixed top-0 end-0 p-3" style="z-index: 1050">
+            <div class="toast show" role="alert" aria-live="assertive" aria-atomic="true">
+                <div class="toast-header">
+                    <strong class="me-auto">Información</strong>
+                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+                <div class="toast-body">
+                    {{ session('rutinaBorrada') }} <i class="fa-solid fa-check" style="color: #2fa518;"></i>
+                </div>
+            </div>
+        </div>
+    @endif --}}
+
+    <main>
+        <div class="col-12 mt-15 text-center mb-3">
             <div>
                 <h2 class="text-dark">Rutinas predefinidas</h2>
             </div>
         </div>
-
-        <section id="gallery">
-            <div class="container">
-                <div class="row">
-                    @foreach ($rutinasDefecto as $rutinaD)
-                        <div class="col-lg-4 mb-4">
-                            <div class="card">
-                                <img src="{{ asset('assets/img/rutinas_defecto/equilibrada.jpeg') }}" alt="Imagen rutina"
-                                    class="card-img-top">
-                                <div class="card-body">
-                                    <h5 class="card-title">{{ ucfirst($rutinaD->tipo) }}</h5>
-                                    <p class="card-text">{{ $rutinaD->descripcion }}</p>
-                                    <a href="{{ route('rutinas-defecto.show', $rutinaD->id) }}"
-                                        class="btn btn-outline-primary btn-md">Ver rutina</a>
-                                    {{-- <a href="" class="btn btn-outline-danger btn-sm"><i class="far fa-heart"></i></a> --}}
-                                </div>
-                            </div>
-                        </div>
-                    @endforeach
+        <hr class="mt-0 mb-4">
+        <div class="container-xl px-4 mt-4 mb-5">
+            <div class="row">
+                <div class="col-xl-12 m-auto">
+                    <table class="table mt-3">
+                        <thead>
+                            <tr class="text-center align-middle small">
+                                <th>Imagen</th>
+                                <th>Tipo</th>
+                                <th>Descripción</th>
+                                <th>Opciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($rutinasD as $rutina)
+                                <tr class="text-center align-middle small">
+                                    <td><img src="{{ '' }}" alt="Imagen rutina"></td>
+                                    <td>{{ ucfirst($rutina->tipo) }}</td>
+                                    <td>{{ $rutina->descripcion }}</td>
+                                    <td>
+                                        <form action="{{ route('rutinas-defecto.show', $rutina->id) }}" method="get">
+                                            @csrf
+                                            <button class="btn btn-primary btn-sm" type="submit"><i
+                                                    class="fa-solid fa-eye"></i> Ver rutina</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
                 </div>
             </div>
-        </section>
-
-        <div class="col-12 mt-5 text-center">
-            <div>
-                <h2 class="text-dark">Rutinas personalizadas</h2>
-            </div>
+            </section>
         </div>
-
-        @if (count($rutinasPersonalizadas) == 0)
-            <div class="col-12 mt-1 text-center">
-                <div>
-                    <h5 class="text-danger">No se han encontrado rutinas personalizadas</h5>
-                    <a href="{{ route('rutinas.create') }}" class="btn btn-outline-success mb-5 mt-3"><i
-                            class="fa-solid fa-plus"></i>
-                        Crear nueva rutina</a>
-                </div>
-            </div>
-        @else
-            <div class="col-12 mt-4 d-flex justify-content-center align-items-center gap-5 mb-3">
-                @foreach ($rutinasPersonalizadas as $rutinaP)
-                    <div class="card" style="width: 18rem;">
-                        <img src="{{ Storage::url($rutinaP->imagen) }}" class="card-img-top" alt="Imagen rutina">
-                        <div class="card-body">
-                            <h4 class="card-title">{{ ucfirst($rutinaP->tipo) }}</h4>
-                            <p class="card-text">{{ ucfirst($rutinaP->descripcion) }}</p>
-                            <a href="{{ route('rutinas.show', $rutinaP->id) }}" class="btn btn-outline-primary">Ver
-                                rutina</a>
-                        </div>
-                    </div>
-                @endforeach
-            </div>
-        @endif
     </main>
+    @include('partials.footer')
 
-    @include('partials.footer');
 </body>

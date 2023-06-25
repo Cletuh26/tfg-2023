@@ -15,6 +15,8 @@ return new class extends Migration
     {
         Schema::create('dietas', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('nombre');
+            $table->string('descripcion');
             $table->enum('tipo',['equilibrada','deficit','calorica','personalizada']);
             $table->bigInteger('usuario_id')->unsigned();
             $table->foreign('usuario_id')->references('id')->on('usuarios');

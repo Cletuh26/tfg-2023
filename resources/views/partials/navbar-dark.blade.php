@@ -14,6 +14,12 @@
                 <li class="nav-item">
                     <a class="nav-link px-lg-3 py-3 py-lg-4 text-dark" href="{{ route('inicio') }}">Inicio</a>
                 </li>
+                @auth
+                    <li class="nav-item">
+                        <a class="nav-link px-lg-3 py-3 py-lg-4 text-dark"
+                            href="{{ route('rutinas-defecto.index', Auth::user()->id) }}">Rutinas predefinidas</a>
+                    </li>
+                @endauth
                 <li class="nav-item">
                     <a class="nav-link px-lg-3 py-3 py-lg-4 text-dark" href="{{ route('rutinas.index') }}">Rutinas</a>
                 </li>

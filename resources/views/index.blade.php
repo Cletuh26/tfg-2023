@@ -78,7 +78,7 @@
                     <h5 class="card-title">Dietas</h5>
                     <p class="card-text">Encuentra la dieta que más se ajuste a tus gustos. Si eso no funciona,
                         siempre puedes crear la tuya personalizada!</p>
-                    <a href="#" class="btn btn-outline-primary">Más
+                    <a href="{{ route('dietas.index') }}" class="btn btn-outline-primary">Más
                         información</a>
                 </div>
             </div>

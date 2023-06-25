@@ -20,6 +20,6 @@ class DietaModel extends Model
 
     public function alimentos(): BelongsToMany
     {
-        return $this->belongsToMany(AlimentoModel::class, 'dietas_alimentos');
+        return $this->belongsToMany(AlimentoModel::class, 'dietas_alimentos', 'dieta_id', 'alimento_id');
     }
 }

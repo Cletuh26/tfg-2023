@@ -14,6 +14,12 @@
                 <li class="nav-item">
                     <a class="nav-link px-lg-3 py-3 py-lg-4" href="{{ route('inicio') }}">Inicio</a>
                 </li>
+                @auth
+                    <li class="nav-item">
+                        <a class="nav-link px-lg-3 py-3 py-lg-4"
+                            href="{{ route('rutinas-defecto.index', Auth::user()->id) }}">Rutinas predefinidas</a>
+                    </li>
+                @endauth
                 <li class="nav-item">
                     <a class="nav-link px-lg-3 py-3 py-lg-4" href="{{ route('rutinas.index') }}">Rutinas</a>
                 </li>
@@ -22,7 +28,8 @@
                 </li>
                 @auth
                     <li class="nav-item">
-                        <a class="nav-link px-lg-3 py-3 py-lg-4 text-dark" href="{{ route('usuarios.show', Auth::user()->id) }}">{{ ucfirst(Auth::user()->nick) }}</a>
+                        <a class="nav-link px-lg-3 py-3 py-lg-4 text-dark"
+                            href="{{ route('usuarios.show', Auth::user()->id) }}">{{ ucfirst(Auth::user()->nick) }}</a>
                     </li>
                 @else
                     <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{{ route('login') }}">Iniciar

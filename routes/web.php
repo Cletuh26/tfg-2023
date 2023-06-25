@@ -42,20 +42,14 @@ Route::match(['get', 'post'],'usuarios/{id}/editarPass', [UsuarioController::cla
 Route::put('usuarios/{id}/updatePass', [UsuarioController::class, 'updatePass'])->middleware('auth')->name('usuarios.updatePass');
 
 // Rutinas
-Route::get('rutinas/{id}', [RutinaController::class, 'show'])->middleware('auth')->name('rutinas.show');
-Route::get('rutinas/create', [RutinaController::class, 'create'])->middleware('auth')->name('rutinas.create');
-Route::match(['get', 'post'],'rutinas/{id}/editar', [RutinaController::class, 'edit'])->middleware('auth')->name('rutinas.edit');
-Route::put('rutinas/{id}', [RutinaController::class, 'update'])->middleware('auth')->name('rutinas.update');
-Route::delete('rutinas/{id}', [RutinaController::class, 'destroy'])->middleware('auth')->name('rutinas.destroy');
-Route::delete('rutinas/{id}', [RutinaController::class, 'borrarEjercicio'])->middleware('auth')->name('rutinas.borrarEjercicio');
+Route::resource('rutinas', RutinaController::class)->middleware('auth');
+Route::delete('rutinas/{id}/borrarEjercicio', [RutinaController::class, 'borrarEjercicio'])->middleware('auth')->name('rutinas.borrarEjercicio');
 
 // Rutinas defecto
-// Route::get('rutinas-defecto/', [RutinaDefectoController::class, 'index'])->middleware('auth')->name('rutinas-defecto.index');
-Route::get('rutinas/', [RutinaDefectoController::class, 'index'])->middleware('auth')->name('rutinas.index');
+Route::get('rutinas-defecto/', [RutinaDefectoController::class, 'index'])->middleware('auth')->name('rutinas-defecto.index');
 Route::get('rutinas-defecto/{id}', [RutinaDefectoController::class, 'show'])->middleware('auth')->name('rutinas-defecto.show');
-Route::get('rutinas-defecto/create', [RutinaDefectoController::class, 'create'])->middleware('auth')->name('rutinas-defecto.create');
-Route::post('rutinas-defecto/{id}/editar', [RutinaDefectoController::class, 'edit'])->middleware('auth')->name('rutinas-defecto.edit');
-Route::put('rutinas-defecto/{id}', [RutinaDefectoController::class, 'update'])->middleware('auth')->name('rutinas-defecto.update');
 
 Route::resource('dietas', DietaController::class)->middleware('auth');
+Route::delete('dietas/{id}/borrarAlimento', [DietaController::class, 'borrarAlimento'])->middleware('auth')->name('dietas.borrarAlimento');
+
 Route::resource('ejercicios', EjercicioController::class)->middleware('auth');

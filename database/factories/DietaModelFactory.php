@@ -20,6 +20,8 @@ class DietaModelFactory extends Factory
         $usuarios = UsuarioModel::all();
 
         return [
+            'nombre' => fake()->word(),
+            'descripcion' => fake()->text('50'),
             'tipo' => fake()->randomElement(['equilibrada','deficit','calorica','personalizada']),
             'usuario_id' => fake()->randomElement($usuarios)->id
         ];

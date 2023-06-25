@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\EjercicioModel;
 use App\Models\RutinaModel;
+use App\Models\UsuarioModel;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class RutinaController extends Controller
 {
@@ -13,7 +16,10 @@ class RutinaController extends Controller
      */
     public function index()
     {
-        //
+        $usuario = UsuarioModel::find(Auth::user()->id);
+        $rutinas = $usuario->rutinas;
+
+        return view('rutinas.index', ['rutinas' => $rutinas]);
     }
 
     /**
@@ -21,7 +27,9 @@ class RutinaController extends Controller
      */
     public function create()
     {
-        return view('rutinas.create');
+        $ejercicios = EjercicioModel::all();
+
+        return view('rutinas.create', ['ejercicios' => $ejercicios]);
     }
 
     /**
@@ -29,7 +37,35 @@ class RutinaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $datosValidados = $request->validate([
+            'nombre' => 'required'
+        ]);
+
+        $rutina = new RutinaModel();
+        $rutina->nombre = $datosValidados['nombre'];
+        $rutina->descripcion = $request['descripcion']??null;
+        $rutina->tipo = $request['tipo'];
+        $rutina->usuario_id = Auth::user()->id;
+
+        // Obtener los ids de los checkbox marcados
+        $ejerciciosSeleccionados = $request->input('ejerciciosSeleccionados', []);
+        $ejerciciosMarcadosIds = json_decode($ejerciciosSeleccionados, true) ?? [];
+
+        $rutina->save();
+
+        foreach ($ejerciciosMarcadosIds as $ejercicioId) {
+            // Buscamos el ejercicio
+            $ejercicio = EjercicioModel::find($ejercicioId);
+
+            // Verificar si se encontró el ejercicio
+            if ($ejercicio) {
+                // Ejemplo: Asociar el ejercicio a la dieta en la base de datos
+                $rutina->ejercicios()->attach($ejercicio->id);
+            }
+        }
+
+        // Redirigir a la página de detalles de la dieta con un mensaje de éxito
+        return redirect()->route('rutinas.show', $rutina->id)->with('rutinaCreada', 'La rutina se ha creado correctamente.');
     }
 
     /**
@@ -47,12 +83,9 @@ class RutinaController extends Controller
      */
     public function edit(string $id)
     {
-        $rutina = RutinaModel::find($id);
+        $rutina = RutinaModel::findOrfail($id);
 
-        $numeroEjercicios = $rutina->ejercicios->count();
-        $ejerciciosRutina = $rutina->ejercicios;
-
-        return view('rutinas.edit', ['rutina' => $rutina, 'numeroEjercicios' => $numeroEjercicios, 'ejerciciosRutina' => $ejerciciosRutina]);
+        return view('rutinas.edit', ['rutina' => $rutina]);
     }
 
     /**
@@ -60,7 +93,20 @@ class RutinaController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $rutina = RutinaModel::findOrFail($id);
+
+        $datosValidados = $request->validate([
+            'nombre' => 'required',
+
+        ]);
+
+        $rutina->nombre = $datosValidados['nombre'];
+        $rutina->descripcion = $request['descripcion']??null;
+        $rutina->tipo = $request['tipo'];
+
+        $rutina->save();
+
+        return view('rutinas.show', ['rutina' => $rutina])->with('rutinaModificada', 'Rutina modificada correctamente.');
     }
 
     /**
@@ -68,15 +114,32 @@ class RutinaController extends Controller
      */
     public function destroy(Request $request, string $id)
     {
+        $usuario = UsuarioModel::findOrFail(Auth::user()->id);
 
+        $rutina = RutinaModel::findOrFail($id);
+
+        if ($rutina->usuario_id === $usuario->id) {
+
+            // Eliminar los ejercicios relacionados
+            $rutina->ejercicios()->detach();
+
+            // Borramos la rutina del usuario
+            $rutina->delete();
+
+            //Redirijimos con exito
+            return redirect()->route('rutinas.index')->with('rutinaBorrada', 'La rutina ha sido eliminada correctamente.');
+        } else {
+            //Redirijimos con errores
+            return redirect()->route('rutinas.index')->with('rutinaError', 'No tienes permisos para eliminar esta rutina.');
+        }
     }
 
     public function borrarEjercicio(Request $request, string $id)
     {
-        $rutina = RutinaModel::findOrFail($id);
+        $rutina = RutinaModel::findOrFail($request->rutina_id);
 
         // Obtener el ID del ejercicio a eliminar
-        $ejercicioId = $request->input('ejercicio_id');
+        $ejercicioId = $id;
 
         // Eliminar la relación entre la rutina y el ejercicio
         $rutina->ejercicios()->detach($ejercicioId);
