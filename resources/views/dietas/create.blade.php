@@ -14,7 +14,7 @@
             <div class="row">
                 <div class="col-xl-12 m-auto">
                     <!-- Dieta card-->
-                    <form action="{{ route('dietas.store') }}" method="post"> 
+                    <form action="{{ route('dietas.store') }}" method="post">
                         @csrf
 
                         <!-- Form Group (nombre)-->
@@ -32,7 +32,7 @@
                             <label class="small mb-1" for="descripcion">Descripción</label>
                             <p class="m-0 col-md-12">
                                 <textarea class="form-control" name="descripcion" id="descripcion" cols="68" rows="3"
-                                    placeholder="Introduce la descripción"></textarea>
+                                    placeholder="Introduce la descripción">{{ old('descripcion') }}</textarea>
                             </p>
                             @error('descripcion')
                                 <small class="text-danger">{{ $message }}</small>
@@ -58,6 +58,11 @@
 
                         <hr class="mt-0 mb-4">
 
+                        <!-- Mostrar mensaje de error -->
+                        @error('alimentosSeleccionados')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
+
                         <table class="table mt-3">
                             <thead>
                                 <tr class="text-center align-middle small">
@@ -76,9 +81,10 @@
                                         <td>{{ ucfirst($alimento->nombre) }}</td>
                                         <td>{{ $alimento->descripcion }}</td>
                                         <td>{{ ucfirst($alimento->tipo) }}</td>
-                                        <td>{{ $alimento->calorias }}</td>
+                                        <td>{{ $alimento->calorias }} cal</td>
                                         <td>
-                                            <input type="checkbox" name="marcado" id="marcado" value="{{ $alimento->id }}">
+                                            <input type="checkbox" name="marcado" id="marcado"
+                                                value="{{ $alimento->id }}">
                                         </td>
                                     </tr>
                                 @endforeach

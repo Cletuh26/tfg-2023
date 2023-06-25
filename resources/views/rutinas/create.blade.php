@@ -14,7 +14,7 @@
             <div class="row">
                 <div class="col-xl-12 m-auto">
                     <!-- rutina card-->
-                    <form action="{{ route('rutinas.store') }}" method="post"> 
+                    <form action="{{ route('rutinas.store') }}" method="post">
                         @csrf
 
                         <!-- Form Group (nombre)-->
@@ -57,6 +57,11 @@
 
                         <hr class="mt-0 mb-4">
 
+                        <!-- Mostrar mensaje de error -->
+                        @error('ejerciciosSeleccionados')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
+
                         <table class="table mt-3">
                             <thead>
                                 <tr class="text-center align-middle small">
@@ -83,7 +88,8 @@
                                         <td>{{ $ejercicio->descanso }} min</td>
                                         <td>{{ $ejercicio->duracion }} min</td>
                                         <td>
-                                            <input type="checkbox" name="marcado" id="marcado" value="{{ $ejercicio->id }}">
+                                            <input type="checkbox" name="marcado" id="marcado"
+                                                value="{{ $ejercicio->id }}">
                                         </td>
                                     </tr>
                                 @endforeach

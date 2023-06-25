@@ -8,6 +8,7 @@ use App\Models\UsuarioModel;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 use function PHPSTORM_META\type;
 
@@ -47,14 +48,30 @@ class DietaController extends Controller
             'descripcion' => 'required'
         ]);
 
+        // Obtener los ids de los checkbox marcados
+        $alimentosSeleccionados = $request->input('alimentosSeleccionados', []);
+        $alimentosMarcadosIds = json_decode($alimentosSeleccionados, true) ?? [];
+
+        // Verificar si se seleccionó al menos un alimento
+        $validator = Validator::make($request->all(), [
+            'alimentosSeleccionados' => [
+                'required',
+                function ($attribute, $value, $fail) use ($alimentosMarcadosIds) {
+                    if (empty($alimentosMarcadosIds)) {
+                        $fail('Debe seleccionar al menos un alimento.');
+                    }
+                },
+            ],
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+
         $dieta = new DietaModel();
         $dieta->nombre = $datosValidados['nombre'];
         $dieta->descripcion = $datosValidados['descripcion'];
         $dieta->usuario_id = Auth::user()->id;
-
-        // Obtener los ids de los checkbox marcados
-        $alimentosSeleccionados = $request->input('alimentosSeleccionados', []);
-        $alimentosMarcadosIds = json_decode($alimentosSeleccionados, true) ?? [];
 
         $dieta->save();
 
@@ -100,13 +117,13 @@ class DietaController extends Controller
     {
         $dieta = DietaModel::findOrFail($id);
 
-        $dieta->nombre = $request['nombre']??null;
-        $dieta->descripcion = $request['descripcion']??null;
+        $dieta->nombre = $request['nombre'] ?? null;
+        $dieta->descripcion = $request['descripcion'] ?? null;
         $dieta->tipo = $request['tipo'];
 
         $dieta->save();
 
-        return view('dietas.show', ['dieta' => $dieta])->with('dietaModificada','Dieta modificada correctamente');
+        return view('dietas.show', ['dieta' => $dieta])->with('dietaModificada', 'Dieta modificada correctamente');
     }
 
     /**

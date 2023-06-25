@@ -54,7 +54,7 @@
                             <select class="form-control" name="tipo" id="tipo">
                                 <option value="equilibrada" @if($rutina->tipo == 'equilibrada') selected @endif>Equilibrada</option>
                                 <option value="definicion" @if($rutina->tipo == 'definicion') selected @endif>Definicion</option>
-                                <option value="volumen" @if($rutina->tipo == 'volumen') selected @endif>volumen</option>
+                                <option value="volumen" @if($rutina->tipo == 'volumen') selected @endif>Volumen</option>
                             </select>
                         </div>
 

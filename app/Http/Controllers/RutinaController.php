@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\EjercicioModel;
 use App\Models\RutinaModel;
 use App\Models\UsuarioModel;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -41,15 +42,32 @@ class RutinaController extends Controller
             'nombre' => 'required'
         ]);
 
-        $rutina = new RutinaModel();
-        $rutina->nombre = $datosValidados['nombre'];
-        $rutina->descripcion = $request['descripcion']??null;
-        $rutina->tipo = $request['tipo'];
-        $rutina->usuario_id = Auth::user()->id;
-
         // Obtener los ids de los checkbox marcados
         $ejerciciosSeleccionados = $request->input('ejerciciosSeleccionados', []);
         $ejerciciosMarcadosIds = json_decode($ejerciciosSeleccionados, true) ?? [];
+
+        // Verificar si se seleccionó al menos un ejercicio
+        $validator = Validator::make($request->all(), [
+            'ejerciciosSeleccionados' => [
+                'required',
+                function ($attribute, $value, $fail) use ($ejerciciosMarcadosIds) {
+                    if (empty($ejerciciosMarcadosIds)) {
+                        $fail('Debe seleccionar al menos un ejercicio.');
+                    }
+                },
+            ],
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+
+        // Creación de la rutina y asignación de los campos
+        $rutina = new RutinaModel();
+        $rutina->nombre = $datosValidados['nombre'];
+        $rutina->descripcion = $request['descripcion'] ?? null;
+        $rutina->tipo = $request['tipo'];
+        $rutina->usuario_id = Auth::user()->id;
 
         $rutina->save();
 
@@ -101,7 +119,7 @@ class RutinaController extends Controller
         ]);
 
         $rutina->nombre = $datosValidados['nombre'];
-        $rutina->descripcion = $request['descripcion']??null;
+        $rutina->descripcion = $request['descripcion'] ?? null;
         $rutina->tipo = $request['tipo'];
 
         $rutina->save();
@@ -151,7 +169,7 @@ class RutinaController extends Controller
             // Opcionalmente, puedes redirigir a una página o realizar otras acciones
 
             return redirect()->route('rutinas.index')->with('rutinaBorrada', 'La rutina se ha borrado al no tener más ejercicios.');
-        }else{
+        } else {
             return redirect()->route('rutinas.edit', $rutina->id)->with('ejercicioBorrado', 'Ejercicio eliminado de la rutina.');
         }
     }

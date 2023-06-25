@@ -67,8 +67,8 @@
                                     <tr class="text-center align-middle small">
                                         <td><img src="{{ '' }}" alt="Imagen dieta"></td>
                                         <td>{{ ucfirst($dieta->tipo) }}</td>
-                                        <td>{{ $dieta->nombre }}</td>
-                                        <td>{{ $dieta->descripcion }}</td>
+                                        <td>{{ ucfirst($dieta->nombre) }}</td>
+                                        <td>{{ ucfirst($dieta->descripcion) }}</td>
                                         <td>
                                             <form action="{{ route('dietas.show', $dieta->id) }}" method="get">
                                                 @csrf

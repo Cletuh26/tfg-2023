@@ -22,7 +22,7 @@
                         <div class="col-md-12">
                             <label class="small mb-1" for="tipo">Tipo</label>
                             <input class="form-control" id="tipo" name="tipo" type="text"
-                                placeholder="Introduce el tipo" value="{{ $rutinaD->tipo }}" disabled>
+                                placeholder="Introduce el tipo" value="{{ ucfirst($rutinaD->tipo) }}" disabled>
                         </div>
 
                         <!-- Form Group (descripcion)-->
@@ -56,9 +56,11 @@
                             <tr class="text-center align-middle">
                                 <th>Imagen</th>
                                 <th>Tipo</th>
+                                <th>Nombre</th>
                                 <th>Descripción</th>
                                 <th>Series</th>
                                 <th>Repeticiones</th>
+                                <th>Descanso</th>
                                 <th>Duración</th>
                             </tr>
                         </thead>
@@ -67,9 +69,11 @@
                                 <tr class="text-center align-middle">
                                     <td><img src="{{ '' }}" alt="Imagen ejercicio"></td>
                                     <td>{{ ucfirst($ejercicio->tipo) }}</td>
-                                    <td>{{ $ejercicio->descripcion }}</td>
+                                    <td>{{ ucfirst($ejercicio->nombre) }}</td>
+                                    <td>{{ ucfirst($ejercicio->descripcion) }}</td>
                                     <td>{{ $ejercicio->series }}</td>
                                     <td>{{ $ejercicio->repeticiones }}</td>
+                                    <td>{{ $ejercicio->descanso }} min</td>
                                     <td>{{ $ejercicio->duracion }} min</td>
                                 </tr>
                             @endforeach
