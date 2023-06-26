@@ -39,7 +39,8 @@ class RutinaController extends Controller
     public function store(Request $request)
     {
         $datosValidados = $request->validate([
-            'nombre' => 'required'
+            'nombre' => 'required',
+            'imagen' => 'nullable|image|mimes:jpeg,jpg,png|max:10240',
         ]);
 
         // Obtener los ids de los checkbox marcados
@@ -68,6 +69,16 @@ class RutinaController extends Controller
         $rutina->descripcion = $request['descripcion'] ?? null;
         $rutina->tipo = $request['tipo'];
         $rutina->usuario_id = Auth::user()->id;
+
+        if ($request->hasFile('imagen')) {
+            $imagen = $request->file('imagen');
+            $imagen->storeAs('rutinas', $imagen->getClientOriginalName(), ['disk' => 'public']);
+            // Asignar la ruta de la imagen a la rutina
+            $rutina->imagen = $imagen->getClientOriginalName();
+        } else {
+            // Asignar la imagen por defecto
+            $rutina->imagen = 'defecto.jpeg';
+        }
 
         $rutina->save();
 

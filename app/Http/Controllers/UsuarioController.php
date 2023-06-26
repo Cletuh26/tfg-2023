@@ -38,9 +38,9 @@ class UsuarioController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Request $request)
+    public function show(string $id)
     {
-        $usuario = UsuarioModel::findOrFail($request->id);
+        $usuario = UsuarioModel::findOrFail($id);
 
         return view('usuarios.show', ['usuario' => $usuario]);
     }
@@ -48,16 +48,16 @@ class UsuarioController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Request $request)
+    public function edit(Request $request, string $id)
     {
-        $usuario = UsuarioModel::findOrFail($request->id);
+        $usuario = UsuarioModel::findOrFail($id);
 
         return view('usuarios.edit', ['usuario' => $usuario]);
     }
 
-    public function editPass(Request $request)
+    public function editPass(string $id)
     {
-        $usuario = UsuarioModel::findOrFail($request->id);
+        $usuario = UsuarioModel::findOrFail($id);
 
         return view('usuarios.editPass', ['usuario' => $usuario]);
     }

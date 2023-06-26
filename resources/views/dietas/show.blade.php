@@ -61,18 +61,18 @@
                 <div class="col-xl-12 m-auto">
                     <!-- dieta card-->
                     <form action="{{ route('dietas.edit', $dieta->id) }}" method="post">
-                        @csrf
+                        @csrf @method('get')
 
                         <!-- Form Group (nombre)-->
                         <div class="col-md-12">
-                            <label class="small mb-1" for="nombre">Nombre</label>
+                            <label class="small mb-1" for="nombre">Nombre *</label>
                             <input class="form-control" id="nombre" name="nombre" type="text"
                                 placeholder="Introduce el nombre" value="{{ ucfirst($dieta->nombre) }}" disabled>
                         </div>
 
                         <!-- Form Group (descripcion)-->
                         <div class="col-md-12">
-                            <label class="small mb-1" for="descripcion">Descripción</label>
+                            <label class="small mb-1" for="descripcion">Descripción *</label>
                             <p class="m-0 col-md-12">
                                 <textarea class="form-control" name="descripcion" id="descripcion" cols="68" rows="3" disabled>{{ ucfirst($dieta->descripcion )}}</textarea>
                             </p>
@@ -80,7 +80,7 @@
 
                         <!-- Form Group (tipo)-->
                         <div class="col-md-12">
-                            <label class="small mb-1" for="tipo">Tipo</label>
+                            <label class="small mb-1" for="tipo">Tipo *</label>
                             <input class="form-control" id="tipo" name="tipo" type="text"
                                 placeholder="Introduce el tipo" value="{{ ucfirst($dieta->tipo) }}" disabled>
                         </div>

@@ -13,15 +13,12 @@
         <hr class="mt-0 mb-4">
         <div class="container-xl px-4 mt-4 mb-5">
             <div class="row">
-                @if ($errors->any())
-                    {!! implode('', $errors->all('<div class="text-danger mb-3">:message</div>')) !!}
-                @endif
                 <div class="col-xl-8">
                     <!-- Account details card-->
                     <div class="card mb-4">
                         <div class="card-header color-nutricion text-white">Detalles de la cuenta</div>
                         <div class="card-body">
-                            <form action="{{ route('usuarios.update', Auth::user()->id) }}" method="post">
+                            <form action="{{ route('usuarios.update', $usuario->id) }}" method="post">
                                 @csrf @method('put')
                                 <!-- Form Row-->
                                 <div class="row gx-3mb-3">
@@ -64,6 +61,9 @@
                                     <label class="small mb-1" for="email">Correo electrónico</label>
                                     <input class="form-control" id="email" name="email" type="email"
                                         placeholder="Introduce tu email" value="{{ old('email', $usuario->email) }}">
+                                    @error('email')
+                                        <small class="text-danger">{{ $message }}</small>
+                                    @enderror
                                 </div>
 
                                 <!-- Form Row-->
@@ -92,6 +92,9 @@
                                         <input class="form-control" id="peso" name="peso" type="number"
                                             min="10" max="400" placeholder="Introduce tu peso"
                                             value="{{ old('peso', $usuario->peso) }}">
+                                        @error('peso')
+                                            <small class="text-danger">{{ $message }}</small>
+                                        @enderror
                                     </div>
                                     <!-- Form Group (altura)-->
                                     <div class="col-md-6">
@@ -99,10 +102,16 @@
                                         <input class="form-control" id="altura" name="altura" type="number"
                                             placeholder="Introduce tu altura"
                                             value="{{ old('altura', $usuario->altura) }}">
+                                        @error('altura')
+                                            <small class="text-danger">{{ $message }}</small>
+                                        @enderror
                                     </div>
                                 </div>
                                 <!-- Save changes button-->
                                 <button class="btn btn-outline-primary" type="submit">Guardar cambios</button>
+
+                                <button class="btn"><a class="btn btn-outline-danger"
+                                    href="{{ route('usuarios.show', $usuario->id) }}">Cancelar</a></button>
                             </form>
                         </div>
                     </div>

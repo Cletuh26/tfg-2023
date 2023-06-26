@@ -70,8 +70,8 @@
                                         <td>{{ ucfirst($dieta->nombre) }}</td>
                                         <td>{{ ucfirst($dieta->descripcion) }}</td>
                                         <td>
-                                            <form action="{{ route('dietas.show', $dieta->id) }}" method="get">
-                                                @csrf
+                                            <form action="{{ route('dietas.show', $dieta->id) }}" method="post">
+                                                @csrf @method('get')
                                                 <button class="btn btn-primary btn-sm" type="submit"><i
                                                         class="fa-solid fa-eye"></i> Información</button>
                                             </form>

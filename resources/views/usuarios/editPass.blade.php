@@ -18,7 +18,7 @@
                     <div class="card mb-4">
                         <div class="card-header color-nutricion text-white">Detalles de la cuenta</div>
                         <div class="card-body">
-                            <form action="{{ route('usuarios.edit', Auth::user()->id) }}" method="post">
+                            <form action="{{ route('usuarios.edit', $usuario->id) }}" method="post">
                                 @csrf
                                 <!-- Form Row-->
                                 <div class="row gx-3mb-3">
@@ -102,7 +102,7 @@
                     <div class="card mb-4 mb-xl-0">
                         <div class="card-header color-nutricion text-white">Cambiar contraseña</div>
                         <div class="card-body text-center">
-                            <form action="{{ route('usuarios.updatePass', Auth::user()->id) }}" method="post">
+                            <form action="{{ route('usuarios.updatePass', $usuario->id) }}" method="post">
                                 @csrf @method('put')
                                 <!-- Form Group (contraseña)-->
                                 <div class="col-md-12">
@@ -137,7 +137,7 @@
                                 <div class="row gx-3 mb-3">
                                     <div class="col-md-6">
                                         <a class="btn btn-outline-danger mt-3"
-                                            href="{{ route('usuarios.show', Auth::user()->id) }}">Cancelar</a>
+                                            href="{{ route('usuarios.show', $usuario->id) }}">Cancelar</a>
                                     </div>
                                     <div class="col-md-6">
                                         <button class="btn btn-outline-success mt-3" type="submit">Restablecer</button>

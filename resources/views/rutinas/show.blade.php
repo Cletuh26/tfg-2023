@@ -65,7 +65,7 @@
 
                         <!-- Form Group (nombre)-->
                         <div class="col-md-12">
-                            <label class="small mb-1" for="nombre">Nombre</label>
+                            <label class="small mb-1" for="nombre">Nombre *</label>
                             <input class="form-control" id="nombre" name="nombre" type="text"
                                 placeholder="Introduce el nombre" value="{{ ucfirst($rutina->nombre) }}" disabled>
                         </div>
@@ -80,7 +80,7 @@
 
                         <!-- Form Group (tipo)-->
                         <div class="col-md-12">
-                            <label class="small mb-1" for="tipo">Tipo</label>
+                            <label class="small mb-1" for="tipo">Tipo *</label>
                             <input class="form-control" id="tipo" name="tipo" type="text"
                                 placeholder="Introduce el tipo" value="{{ ucfirst($rutina->tipo) }}" disabled>
                         </div>

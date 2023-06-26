@@ -19,7 +19,7 @@
 
                         <!-- Form Group (nombre)-->
                         <div class="col-md-12">
-                            <label class="small mb-1" for="nombre">Nombre</label>
+                            <label class="small mb-1" for="nombre">Nombre *</label>
                             <input class="form-control" id="nombre" name="nombre" type="text"
                                 placeholder="Introduce el nombre" value="{{ old('nombre') }}">
                             @error('nombre')
@@ -29,7 +29,7 @@
 
                         <!-- Form Group (descripcion)-->
                         <div class="col-md-12">
-                            <label class="small mb-1" for="descripcion">Descripción</label>
+                            <label class="small mb-1" for="descripcion">Descripción *</label>
                             <p class="m-0 col-md-12">
                                 <textarea class="form-control" name="descripcion" id="descripcion" cols="68" rows="3"
                                     placeholder="Introduce la descripción">{{ old('descripcion') }}</textarea>
@@ -41,13 +41,23 @@
 
                         <!-- Form Group (tipo)-->
                         <div class="col-md-12">
-                            <label class="small mb-1" for="tipo">Tipo</label>
+                            <label class="small mb-1" for="tipo">Tipo *</label>
                             <select class="form-control" name="tipo" id="tipo">
                                 <option value="equilibrada" selected>Equilibrada</option>
                                 <option value="deficit">Deficit</option>
                                 <option value="calorica">Calorica</option>
                                 <option value="personalizada">Personalizada</option>
                             </select>
+                        </div>
+
+                        <!-- Form Group (imagen)-->
+                        <div class="col-md-12">
+                            <label class="small mb-1" for="imagen">Imagen <small>(opcional)</small></label>
+                            <input class="form-control" id="imagen" name="imagen" type="file" accept=".jpeg, .jpg, .png"
+                                placeholder="Introduce el imagen">
+                            @error('imagen')
+                                <small class="text-danger">{{ $message }}</small>
+                            @enderror
                         </div>
 
                         <!-- Alimentos Section-->
@@ -77,7 +87,7 @@
                             <tbody>
                                 @foreach ($alimentos as $alimento)
                                     <tr class="text-center align-middle small">
-                                        <td><img src="{{ '' }}" alt="Imagen alimento"></td>
+                                        <td><img style="width: 200px" src="{{ Storage::url('alimentos/' . $alimento->imagen) }}" alt="Imagen alimento"></td>
                                         <td>{{ ucfirst($alimento->nombre) }}</td>
                                         <td>{{ $alimento->descripcion }}</td>
                                         <td>{{ ucfirst($alimento->tipo) }}</td>

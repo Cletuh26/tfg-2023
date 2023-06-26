@@ -89,8 +89,7 @@
                     <h5 class="card-title">Ejercicios</h5>
                     <p class="card-text">Explora el listado de ejercicios que ofrecemos. Si no encuentras el que estas
                         buscando, añadelo tu mismo!</p>
-                    <a href="#" class="btn btn-outline-primary">Más
-                        información</a>
+                    <a href="#" class="btn btn-outline-danger">Próximamente</a>
                 </div>
             </div>
 
@@ -100,8 +99,7 @@
                     <h5 class="card-title">Alimentos</h5>
                     <p class="card-text">Disponemos de una amplia variedad de alimentos para hacer unas dietas
                         variadas para cada tipo de persona.</p>
-                    <a href="#" class="btn btn-outline-primary">Más
-                        información</a>
+                    <a href="#" class="btn btn-outline-danger">Próximamente</a>
                 </div>
             </div>
         </div>

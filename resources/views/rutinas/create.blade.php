@@ -14,12 +14,12 @@
             <div class="row">
                 <div class="col-xl-12 m-auto">
                     <!-- rutina card-->
-                    <form action="{{ route('rutinas.store') }}" method="post">
+                    <form action="{{ route('rutinas.store') }}" method="post" enctype="multipart/form-data">
                         @csrf
 
                         <!-- Form Group (nombre)-->
                         <div class="col-md-12">
-                            <label class="small mb-1" for="nombre">Nombre</label>
+                            <label class="small mb-1" for="nombre">Nombre *</label>
                             <input class="form-control" id="nombre" name="nombre" type="text"
                                 placeholder="Introduce el nombre" value="{{ old('nombre') }}">
                             @error('nombre')
@@ -32,7 +32,7 @@
                             <label class="small mb-1" for="descripcion">Descripción</label>
                             <p class="m-0 col-md-12">
                                 <textarea class="form-control" name="descripcion" id="descripcion" cols="68" rows="3"
-                                    placeholder="Introduce la descripción"></textarea>
+                                    placeholder="Introduce la descripción">{{ old('descripcion') }}</textarea>
                             </p>
                             @error('descripcion')
                                 <small class="text-danger">{{ $message }}</small>
@@ -41,12 +41,22 @@
 
                         <!-- Form Group (tipo)-->
                         <div class="col-md-12">
-                            <label class="small mb-1" for="tipo">Tipo</label>
+                            <label class="small mb-1" for="tipo">Tipo *</label>
                             <select class="form-control" name="tipo" id="tipo">
                                 <option value="equilibrada" selected>Equilibrada</option>
                                 <option value="definicion">Definicion</option>
                                 <option value="volumen">Volumen</option>
                             </select>
+                        </div>
+
+                        <!-- Form Group (imagen)-->
+                        <div class="col-md-12">
+                            <label class="small mb-1" for="imagen">Imagen <small>(opcional)</small></label>
+                            <input class="form-control" id="imagen" name="imagen" type="file" accept=".jpeg, .jpg, .png"
+                                placeholder="Introduce el imagen">
+                            @error('imagen')
+                                <small class="text-danger">{{ $message }}</small>
+                            @enderror
                         </div>
 
                         <!-- ejercicios Section-->
@@ -79,7 +89,7 @@
                             <tbody>
                                 @foreach ($ejercicios as $ejercicio)
                                     <tr class="text-center align-middle small">
-                                        <td><img src="{{ '' }}" alt="Imagen ejercicio"></td>
+                                        <td><img style="width: 200px" src="{{ Storage::url('ejercicios/' . $ejercicio->imagen) }}" alt="Imagen ejercicio"></td>
                                         <td>{{ ucfirst($ejercicio->tipo) }}</td>
                                         <td>{{ ucfirst($ejercicio->nombre) }}</td>
                                         <td>{{ ucfirst($ejercicio->descripcion) }}</td>

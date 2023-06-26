@@ -35,22 +35,28 @@
 
                         <!-- Form Group (nombre)-->
                         <div class="col-md-12">
-                            <label class="small mb-1" for="nombre">Nombre</label>
+                            <label class="small mb-1" for="nombre">Nombre *</label>
                             <input class="form-control" id="nombre" name="nombre" type="text"
                                 placeholder="Introduce el nombre" value="{{ old('nombre', $dieta->nombre) }}">
+                                @error('nombre')
+                                <small class="text-danger">{{ $message }}</small>
+                            @enderror
                         </div>
 
                         <!-- Form Group (descripcion)-->
                         <div class="col-md-12">
-                            <label class="small mb-1" for="descripcion">Descripción</label>
+                            <label class="small mb-1" for="descripcion">Descripción *</label>
                             <p class="m-0 col-md-12">
                                 <textarea class="form-control" name="descripcion" id="descripcion" cols="68" rows="3" >{{ $dieta->descripcion }}</textarea>
                             </p>
+                            @error('descripcion')
+                                <small class="text-danger">{{ $message }}</small>
+                            @enderror
                         </div>
 
                         <!-- Form Group (tipo)-->
                         <div class="col-md-12">
-                            <label class="small mb-1" for="tipo">Tipo</label>
+                            <label class="small mb-1" for="tipo">Tipo *</label>
                             <select class="form-control" name="tipo" id="tipo">
                                 <option value="equilibrada" @if($dieta->tipo == 'equilibrada') selected @endif>Equilibrada</option>
                                 <option value="deficit" @if($dieta->tipo == 'deficit') selected @endif>Deficit</option>

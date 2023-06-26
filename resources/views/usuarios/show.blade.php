@@ -4,7 +4,6 @@
     @include('partials.navbar-dark')
 
     @if (session('editado_correcto'))
-        <!-- TODO: Mandar mensaje para decirle al usuario que se ha editado correctamente -->
         <div class="position-fixed top-0 end-0 p-3" style="z-index: 1050">
             <div class="toast show" role="alert" aria-live="assertive" aria-atomic="true">
                 <div class="toast-header">
@@ -33,8 +32,8 @@
                     <div class="card mb-4">
                         <div class="card-header color-nutricion text-white">Detalles de la cuenta</div>
                         <div class="card-body">
-                            <form action="{{ route('usuarios.edit', Auth::user()->id) }}" method="post">
-                                @csrf
+                            <form action="{{ route('usuarios.edit', $usuario->id) }}" method="post">
+                                @csrf @method('get')
                                 <!-- Form Row-->
                                 <div class="row gx-3mb-3">
                                     <!-- Form Group (nick)-->

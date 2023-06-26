@@ -2,7 +2,7 @@
 
 <body>
     @include('partials.navbar-dark')
-    
+
     @if (session('ejercicioBorrado'))
         <div class="position-fixed top-0 end-0 p-3" style="z-index: 1050">
             <div class="toast show" role="alert" aria-live="assertive" aria-atomic="true">
@@ -35,26 +35,35 @@
 
                         <!-- Form Group (nombre)-->
                         <div class="col-md-12">
-                            <label class="small mb-1" for="nombre">Nombre</label>
+                            <label class="small mb-1" for="nombre">Nombre *</label>
                             <input class="form-control" id="nombre" name="nombre" type="text"
                                 placeholder="Introduce el nombre" value="{{ old('nombre', $rutina->nombre) }}">
+                            @error('nombre')
+                                <small class="text-danger">{{ $message }}</small>
+                            @enderror
                         </div>
 
                         <!-- Form Group (descripcion)-->
                         <div class="col-md-12">
                             <label class="small mb-1" for="descripcion">Descripción</label>
                             <p class="m-0 col-md-12">
-                                <textarea class="form-control" name="descripcion" id="descripcion" cols="68" rows="3" >{{ old('descripcion', $rutina->descripcion) }}</textarea>
+                                <textarea class="form-control" name="descripcion" id="descripcion" cols="68" rows="3">{{ old('descripcion', $rutina->descripcion) }}</textarea>
                             </p>
+                            @error('descripcion')
+                                <small class="text-danger">{{ $message }}</small>
+                            @enderror
                         </div>
 
                         <!-- Form Group (tipo)-->
                         <div class="col-md-12">
-                            <label class="small mb-1" for="tipo">Tipo</label>
+                            <label class="small mb-1" for="tipo">Tipo *</label>
                             <select class="form-control" name="tipo" id="tipo">
-                                <option value="equilibrada" @if($rutina->tipo == 'equilibrada') selected @endif>Equilibrada</option>
-                                <option value="definicion" @if($rutina->tipo == 'definicion') selected @endif>Definicion</option>
-                                <option value="volumen" @if($rutina->tipo == 'volumen') selected @endif>Volumen</option>
+                                <option value="equilibrada" @if ($rutina->tipo == 'equilibrada') selected @endif>
+                                    Equilibrada</option>
+                                <option value="definicion" @if ($rutina->tipo == 'definicion') selected @endif>Definicion
+                                </option>
+                                <option value="volumen" @if ($rutina->tipo == 'volumen') selected @endif>Volumen
+                                </option>
                             </select>
                         </div>
 
@@ -94,7 +103,9 @@
                         <tbody>
                             @foreach ($rutina->ejercicios as $ejercicio)
                                 <tr class="text-center align-middle small">
-                                    <td><img style="width: 200px" src="{{ Storage::url('ejercicios/' . $ejercicio->imagen) }}" alt="Imagen ejercicio"></td>
+                                    <td><img style="width: 200px"
+                                            src="{{ Storage::url('ejercicios/' . $ejercicio->imagen) }}"
+                                            alt="Imagen ejercicio"></td>
                                     <td>{{ ucfirst($ejercicio->tipo) }}</td>
                                     <td>{{ ucfirst($ejercicio->nombre) }}</td>
                                     <td>{{ ucfirst($ejercicio->descripcion) }}</td>
@@ -103,7 +114,8 @@
                                     <td>{{ $ejercicio->descanso }} min</td>
                                     <td>{{ $ejercicio->duracion }} min</td>
                                     <td>
-                                        <form action="{{ route('rutinas.borrarEjercicio', $ejercicio->id) }}" method="post">
+                                        <form action="{{ route('rutinas.borrarEjercicio', $ejercicio->id) }}"
+                                            method="post">
                                             @csrf @method('delete')
                                             <input type="hidden" name="rutina_id" value={{ $rutina->id }}>
                                             <button class="btn btn-danger btn-sm" type="submit"><i

@@ -56,8 +56,8 @@
                                         <td>{{ ucfirst($rutina->nombre) }}</td>
                                         <td>{{ ucfirst($rutina->descripcion) }}</td>
                                         <td>
-                                            <form action="{{ route('rutinas.show', $rutina->id) }}" method="get">
-                                                @csrf
+                                            <form action="{{ route('rutinas.show', $rutina->id) }}" method="post">
+                                                @csrf @method('get')
                                                 <button class="btn btn-primary btn-sm" type="submit"><i
                                                         class="fa-solid fa-eye"></i> Información</button>
                                             </form>

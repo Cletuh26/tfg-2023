@@ -33,9 +33,7 @@ Route::get('registro', [RegistroController::class, 'verFormulario'])->name('regi
 Route::post('registro', [RegistroController::class, 'procesarFormulario'])->name('registroProcesado');
 
 // Usuario
-Route::get('usuarios/{id}', [UsuarioController::class, 'show'])->middleware('auth')->name('usuarios.show');
-Route::post('usuarios/{id}/editar', [UsuarioController::class, 'edit'])->middleware('auth')->name('usuarios.edit');
-Route::put('usuarios/{id}', [UsuarioController::class, 'update'])->middleware('auth')->name('usuarios.update');
+Route::resource('usuarios', UsuarioController::class)->middleware('auth');
 
 // Apartado contraseñas
 Route::match(['get', 'post'],'usuarios/{id}/editarPass', [UsuarioController::class, 'editPass'])->middleware('auth')->name('usuarios.editPass');

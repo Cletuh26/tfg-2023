@@ -45,7 +45,8 @@ class DietaController extends Controller
     {
         $datosValidados = $request->validate([
             'nombre' => 'required',
-            'descripcion' => 'required'
+            'descripcion' => 'required',
+            'imagen' => 'nullable|image|mimes:jpeg,jpg,png|max:10240',
         ]);
 
         // Obtener los ids de los checkbox marcados
@@ -72,6 +73,16 @@ class DietaController extends Controller
         $dieta->nombre = $datosValidados['nombre'];
         $dieta->descripcion = $datosValidados['descripcion'];
         $dieta->usuario_id = Auth::user()->id;
+
+        if ($request->hasFile('imagen')) {
+            $imagen = $request->file('imagen');
+            $imagen->storeAs('dietas', $imagen->getClientOriginalName(), ['disk' => 'public']);
+            // Asignar la ruta de la imagen a la rutina
+            $dieta->imagen = $imagen->getClientOriginalName();
+        } else {
+            // Asignar la imagen por defecto
+            $dieta->imagen = 'defecto.jpg';
+        }
 
         $dieta->save();
 
@@ -117,8 +128,13 @@ class DietaController extends Controller
     {
         $dieta = DietaModel::findOrFail($id);
 
-        $dieta->nombre = $request['nombre'] ?? null;
-        $dieta->descripcion = $request['descripcion'] ?? null;
+        $datosValidados = $request->validate([
+            'nombre' => 'required',
+            'descripcion' => 'required'
+        ]);
+
+        $dieta->nombre = $datosValidados['nombre'];
+        $dieta->descripcion = $datosValidados['descripcion'];
         $dieta->tipo = $request['tipo'];
 
         $dieta->save();
