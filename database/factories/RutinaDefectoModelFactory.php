@@ -17,14 +17,14 @@ class RutinaDefectoModelFactory extends Factory
      */
     public function definition(): array
     {
-        $imagen = fake()->image('storage/app/public/rutinas-defecto');
+        // $imagen = fake()->image('storage/app/public/rutinas-defecto');
 
-        $nombreImagen = basename($imagen);
+        // $nombreImagen = basename($imagen);
         
         return [
             'descripcion' => fake()->realText(),
             'tipo' => fake()->randomElement(['equilibrada','volumen','definicion']),
-            'imagen' => $nombreImagen
+            'imagen' => 'rutinas.jpeg',//$nombreImagen,
         ];
     }
 }

@@ -17,15 +17,15 @@ class AlimentoModelFactory extends Factory
      */
     public function definition(): array
     {
-        $imagen = fake()->image('storage/app/public/alimentos');
+        // $imagen = fake()->image('storage/app/public/alimentos');
 
-        $nombreImagen = basename($imagen);
+        // $nombreImagen = basename($imagen);
 
         return [
             'nombre' => $this->faker->name(),
             'descripcion' => $this->faker->text(),
             'calorias' => $this->faker->numberBetween(2,900),
-            'imagen' => $nombreImagen,
+            'imagen' => 'alimentos.jpg', //$nombreImagen
             'tipo' => $this->faker->randomElement(['comida','bebida','otro']),
             'datos' => $this->faker->text(),
         ];
