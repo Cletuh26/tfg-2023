@@ -4,7 +4,7 @@
 
     @include('partials.navbar-dark')
 
-    {{-- @if (session('rutinaBorrada'))
+    @if (session('rutinaBorrada'))
         <div class="position-fixed top-0 end-0 p-3" style="z-index: 1050">
             <div class="toast show" role="alert" aria-live="assertive" aria-atomic="true">
                 <div class="toast-header">
@@ -16,7 +16,7 @@
                 </div>
             </div>
         </div>
-    @endif --}}
+    @endif
 
     <main>
         <div class="col-12 mt-15 text-center mb-3">
@@ -59,7 +59,7 @@
                                             <form action="{{ route('rutinas.show', $rutina->id) }}" method="get">
                                                 @csrf
                                                 <button class="btn btn-primary btn-sm" type="submit"><i
-                                                        class="fa-solid fa-eye"></i> Ver rutina</button>
+                                                        class="fa-solid fa-eye"></i> Información</button>
                                             </form>
                                         </td>
                                         <td>

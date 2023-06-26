@@ -50,6 +50,8 @@
             <div>
                 <h2 class="text-dark mt-15 mb-4">Información de la rutina <button class="btn btn-primary btn-sm"><a
                             href="{{ route('rutinas.edit', $rutina->id) }}" class="text-white">Editar</a></button>
+                    <button class="btn btn-danger btn-sm"><a href="{{ route('rutinas.index') }}"
+                            class="text-white">Volver</a></button>
                 </h2>
             </div>
         </div>
@@ -116,7 +118,9 @@
                         <tbody>
                             @foreach ($rutina->ejercicios as $ejercicio)
                                 <tr class="text-center align-middle small">
-                                    <td><img style="width: 200px" src="{{ Storage::url('ejercicios/' . $ejercicio->imagen) }}" alt="Imagen ejercicio"></td>
+                                    <td><img style="width: 200px"
+                                            src="{{ Storage::url('ejercicios/' . $ejercicio->imagen) }}"
+                                            alt="Imagen ejercicio"></td>
                                     <td>{{ ucfirst($ejercicio->tipo) }}</td>
                                     <td>{{ ucfirst($ejercicio->nombre) }}</td>
                                     <td>{{ ucfirst($ejercicio->descripcion) }}</td>

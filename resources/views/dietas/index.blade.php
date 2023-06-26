@@ -73,7 +73,7 @@
                                             <form action="{{ route('dietas.show', $dieta->id) }}" method="get">
                                                 @csrf
                                                 <button class="btn btn-primary btn-sm" type="submit"><i
-                                                        class="fa-solid fa-eye"></i> Ver dieta</button>
+                                                        class="fa-solid fa-eye"></i> Información</button>
                                             </form>
                                         </td>
                                         <td>

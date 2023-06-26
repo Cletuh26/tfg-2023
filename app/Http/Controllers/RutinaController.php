@@ -124,7 +124,7 @@ class RutinaController extends Controller
 
         $rutina->save();
 
-        return view('rutinas.show', ['rutina' => $rutina])->with('rutinaModificada', 'Rutina modificada correctamente.');
+        return redirect()->route('rutinas.show', ['rutina' => $rutina])->with('rutinaModificada', 'Rutina modificada correctamente.');
     }
 
     /**

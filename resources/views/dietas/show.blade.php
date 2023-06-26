@@ -50,6 +50,8 @@
             <div>
                 <h2 class="text-dark mt-15 mb-4">Información de la dieta <button class="btn btn-primary btn-sm"><a
                             href="{{ route('dietas.edit', $dieta->id) }}" class="text-white">Editar</a></button>
+                    <button class="btn btn-danger btn-sm"><a href="{{ route('dietas.index') }}"
+                            class="text-white">Volver</a></button>
                 </h2>
             </div>
         </div>
@@ -65,14 +67,14 @@
                         <div class="col-md-12">
                             <label class="small mb-1" for="nombre">Nombre</label>
                             <input class="form-control" id="nombre" name="nombre" type="text"
-                                placeholder="Introduce el nombre" value="{{ old('nombre', $dieta->nombre) }}" disabled>
+                                placeholder="Introduce el nombre" value="{{ ucfirst($dieta->nombre) }}" disabled>
                         </div>
 
                         <!-- Form Group (descripcion)-->
                         <div class="col-md-12">
                             <label class="small mb-1" for="descripcion">Descripción</label>
                             <p class="m-0 col-md-12">
-                                <textarea class="form-control" name="descripcion" id="descripcion" cols="68" rows="3" disabled>{{ $dieta->descripcion }}</textarea>
+                                <textarea class="form-control" name="descripcion" id="descripcion" cols="68" rows="3" disabled>{{ ucfirst($dieta->descripcion )}}</textarea>
                             </p>
                         </div>
 
@@ -80,7 +82,7 @@
                         <div class="col-md-12">
                             <label class="small mb-1" for="tipo">Tipo</label>
                             <input class="form-control" id="tipo" name="tipo" type="text"
-                                placeholder="Introduce el tipo" value="{{ old('tipo', $dieta->tipo) }}" disabled>
+                                placeholder="Introduce el tipo" value="{{ ucfirst($dieta->tipo) }}" disabled>
                         </div>
 
                         <!-- Form Row-->
@@ -113,11 +115,13 @@
                         <tbody>
                             @foreach ($dieta->alimentos as $alimento)
                                 <tr class="text-center align-middle small">
-                                    <td><img style="width: 200px" src="{{ Storage::url('alimentos/' . $alimento->imagen) }}" alt="Imagen alimento"></td>
+                                    <td><img style="width: 200px"
+                                            src="{{ Storage::url('alimentos/' . $alimento->imagen) }}"
+                                            alt="Imagen alimento"></td>
                                     <td>{{ ucfirst($alimento->nombre) }}</td>
                                     <td>{{ ucfirst($alimento->descripcion) }}</td>
                                     <td>{{ ucfirst($alimento->tipo) }}</td>
-                                    <td>{{ $alimento->calorias }}</td>
+                                    <td>{{ $alimento->calorias }} cal</td>
                                 </tr>
                             @endforeach
                         </tbody>

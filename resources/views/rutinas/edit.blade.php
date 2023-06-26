@@ -37,14 +37,14 @@
                         <div class="col-md-12">
                             <label class="small mb-1" for="nombre">Nombre</label>
                             <input class="form-control" id="nombre" name="nombre" type="text"
-                                placeholder="Introduce el nombre" value="{{ ucfirst($rutina->nombre) }}">
+                                placeholder="Introduce el nombre" value="{{ old('nombre', $rutina->nombre) }}">
                         </div>
 
                         <!-- Form Group (descripcion)-->
                         <div class="col-md-12">
                             <label class="small mb-1" for="descripcion">Descripción</label>
                             <p class="m-0 col-md-12">
-                                <textarea class="form-control" name="descripcion" id="descripcion" cols="68" rows="3" >{{ ucfirst($rutina->descripcion) }}</textarea>
+                                <textarea class="form-control" name="descripcion" id="descripcion" cols="68" rows="3" >{{ old('descripcion', $rutina->descripcion) }}</textarea>
                             </p>
                         </div>
 

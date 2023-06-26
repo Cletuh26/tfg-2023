@@ -31,6 +31,7 @@
                     <table class="table mt-3">
                         <thead>
                             <tr class="text-center align-middle small">
+                                <th>Imagen</th>
                                 <th>Tipo</th>
                                 <th>Descripción</th>
                                 <th>Opciones</th>
@@ -39,13 +40,14 @@
                         <tbody>
                             @foreach ($rutinasD as $rutina)
                                 <tr class="text-center align-middle small">
+                                    <td><img style="width: 200px" src="{{ Storage::url('rutinas-defecto/' . $rutina->imagen) }}" alt="Imagen rutina"></td>
                                     <td>{{ ucfirst($rutina->tipo) }}</td>
                                     <td>{{ ucfirst($rutina->descripcion) }}</td>
                                     <td>
                                         <form action="{{ route('rutinas-defecto.show', $rutina->id) }}" method="get">
                                             @csrf
                                             <button class="btn btn-primary btn-sm" type="submit"><i
-                                                    class="fa-solid fa-eye"></i> Ver rutina</button>
+                                                    class="fa-solid fa-eye"></i> Información</button>
                                         </form>
                                     </td>
                                 </tr>

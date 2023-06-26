@@ -29,7 +29,7 @@
                         <div class="col-md-12">
                             <label class="small mb-1" for="descripcion">Descripción</label>
                             <p class="m-0 col-md-12">
-                                <textarea class="form-control" name="descripcion" id="descripcion" cols="68" rows="3" disabled>{{ $rutinaD->descripcion }}</textarea>
+                                <textarea class="form-control" name="descripcion" id="descripcion" cols="68" rows="3" disabled>{{ ucfirst($rutinaD->descripcion) }}</textarea>
                             </p>
                         </div>
 
