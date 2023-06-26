@@ -111,13 +111,13 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($dieta->alimentos as $ejercicio)
+                            @foreach ($dieta->alimentos as $alimento)
                                 <tr class="text-center align-middle small">
-                                    <td><img src="{{ '' }}" alt="Imagen ejercicio"></td>
-                                    <td>{{ ucfirst($ejercicio->nombre) }}</td>
-                                    <td>{{ $ejercicio->descripcion }}</td>
-                                    <td>{{ ucfirst($ejercicio->tipo) }}</td>
-                                    <td>{{ $ejercicio->calorias }}</td>
+                                    <td><img style="width: 200px" src="{{ Storage::url('alimentos/' . $alimento->imagen) }}" alt="Imagen alimento"></td>
+                                    <td>{{ ucfirst($alimento->nombre) }}</td>
+                                    <td>{{ ucfirst($alimento->descripcion) }}</td>
+                                    <td>{{ ucfirst($alimento->tipo) }}</td>
+                                    <td>{{ $alimento->calorias }}</td>
                                 </tr>
                             @endforeach
                         </tbody>

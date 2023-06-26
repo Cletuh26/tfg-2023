@@ -17,13 +17,10 @@ class AlimentoModelFactory extends Factory
      */
     public function definition(): array
     {
-        $imagen = $this->faker->image();
+        $imagen = fake()->image('storage/app/public/alimentos');
 
         $nombreImagen = basename($imagen);
 
-        // Mover la imagen a la carpeta deseada
-        Storage::move($imagen, 'public/alimentos/' . $nombreImagen);
-        
         return [
             'nombre' => $this->faker->name(),
             'descripcion' => $this->faker->text(),

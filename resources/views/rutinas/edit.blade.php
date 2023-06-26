@@ -94,7 +94,7 @@
                         <tbody>
                             @foreach ($rutina->ejercicios as $ejercicio)
                                 <tr class="text-center align-middle small">
-                                    <td><img src="{{ '' }}" alt="Imagen ejercicio"></td>
+                                    <td><img style="width: 200px" src="{{ Storage::url('ejercicios/' . $ejercicio->imagen) }}" alt="Imagen ejercicio"></td>
                                     <td>{{ ucfirst($ejercicio->tipo) }}</td>
                                     <td>{{ ucfirst($ejercicio->nombre) }}</td>
                                     <td>{{ ucfirst($ejercicio->descripcion) }}</td>

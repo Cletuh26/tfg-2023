@@ -20,12 +20,9 @@ class RutinaModelFactory extends Factory
     {
         $usuarios = UsuarioModel::all();
 
-        $imagen = fake()->image();
+        $imagen = fake()->image('storage/app/public/rutinas');
 
         $nombreImagen = basename($imagen);
-
-        // Mover la imagen a la carpeta deseada
-        Storage::move($imagen, 'public/rutinas/' . $nombreImagen);
         
         return [
             'nombre' => fake()->word(),

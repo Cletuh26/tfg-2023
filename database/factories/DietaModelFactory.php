@@ -18,13 +18,9 @@ class DietaModelFactory extends Factory
      */
     public function definition(): array
     {
-
-        $imagen = fake()->image();
+        $imagen = fake()->image('storage/app/public/dietas');
 
         $nombreImagen = basename($imagen);
-
-        // Mover la imagen a la carpeta deseada
-        Storage::move($imagen, 'public/dietas/' . $nombreImagen);
         
         $usuarios = UsuarioModel::all();
 

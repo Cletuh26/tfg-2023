@@ -17,13 +17,9 @@ class EjercicioModelFactory extends Factory
      */
     public function definition(): array
     {
-
-        $imagen = fake()->image();
+        $imagen = fake()->image('storage/app/public/ejercicios');
 
         $nombreImagen = basename($imagen);
-
-        // Mover la imagen a la carpeta deseada
-        Storage::move($imagen, 'public/ejercicios/' . $nombreImagen);
         
         return [
             'nombre' => fake()->name(),

@@ -51,7 +51,7 @@
                             <tbody>
                                 @foreach ($rutinas as $rutina)
                                     <tr class="text-center align-middle small">
-                                        <td><img src="{{ '' }}" alt="Imagen rutina"></td>
+                                        <td><img style="width: 200px" src="{{ Storage::url('rutinas/' . $rutina->imagen) }}" alt="Imagen rutina"></td>
                                         <td>{{ ucfirst($rutina->tipo) }}</td>
                                         <td>{{ ucfirst($rutina->nombre) }}</td>
                                         <td>{{ ucfirst($rutina->descripcion) }}</td>

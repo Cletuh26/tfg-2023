@@ -31,7 +31,6 @@
                     <table class="table mt-3">
                         <thead>
                             <tr class="text-center align-middle small">
-                                <th>Imagen</th>
                                 <th>Tipo</th>
                                 <th>Descripción</th>
                                 <th>Opciones</th>
@@ -40,9 +39,8 @@
                         <tbody>
                             @foreach ($rutinasD as $rutina)
                                 <tr class="text-center align-middle small">
-                                    <td><img src="{{ '' }}" alt="Imagen rutina"></td>
                                     <td>{{ ucfirst($rutina->tipo) }}</td>
-                                    <td>{{ $rutina->descripcion }}</td>
+                                    <td>{{ ucfirst($rutina->descripcion) }}</td>
                                     <td>
                                         <form action="{{ route('rutinas-defecto.show', $rutina->id) }}" method="get">
                                             @csrf

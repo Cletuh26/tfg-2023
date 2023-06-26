@@ -92,7 +92,7 @@
                         <tbody>
                             @foreach ($dieta->alimentos as $alimento)
                                 <tr class="text-center align-middle small">
-                                    <td><img src="{{ '' }}" alt="Imagen alimento"></td>
+                                    <td><img style="width: 200px" src="{{ Storage::url('alimentos/' . $alimento->imagen) }}" alt="Imagen alimento"></td>
                                     <td>{{ ucfirst($alimento->nombre) }}</td>
                                     <td>{{ ucfirst($alimento->descripcion) }}</td>
                                     <td>{{ ucfirst($alimento->tipo) }}</td>

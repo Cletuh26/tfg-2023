@@ -17,14 +17,9 @@ class RutinaDefectoModelFactory extends Factory
      */
     public function definition(): array
     {
-
-        $imagen = fake()->image();
+        $imagen = fake()->image('storage/app/public/rutinas-defecto');
 
         $nombreImagen = basename($imagen);
-
-        // Mover la imagen a la carpeta deseada
-        Storage::move($imagen, 'public/rutinas-defecto/' . $nombreImagen);
-        
         
         return [
             'descripcion' => fake()->realText(),
