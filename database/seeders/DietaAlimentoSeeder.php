@@ -14,6 +14,6 @@ class DietaAlimentoSeeder extends Seeder
      */
     public function run(): void
     {
-        DietaAlimentoModel::factory(3)->create();
+        DietaAlimentoModel::factory(25)->create();
     }
 }

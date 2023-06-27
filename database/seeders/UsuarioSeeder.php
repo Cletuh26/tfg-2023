@@ -13,7 +13,7 @@ class UsuarioSeeder extends Seeder
      */
     public function run(): void
     {
-        UsuarioModel::factory(3)->create();
+        UsuarioModel::factory(5)->create();
         UsuarioModel::factory()->create(['email' => 'a@a.com', 'password' => Hash::make('123123'), 'nick' => 'Ismxxel']);
     }
 }

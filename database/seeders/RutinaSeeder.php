@@ -12,6 +12,6 @@ class RutinaSeeder extends Seeder
      */
     public function run(): void
     {
-        RutinaModel::factory(5)->create();
+        RutinaModel::factory(10)->create();
     }
 }
