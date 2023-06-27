@@ -18,16 +18,16 @@ class DietaModelFactory extends Factory
      */
     public function definition(): array
     {
-        // $imagen = fake()->image('storage/app/public/dietas');
+        $imagen = fake()->image('storage/app/public/dietas');
 
-        // $nombreImagen = basename($imagen);
+        $nombreImagen = basename($imagen);
         
         $usuarios = UsuarioModel::all();
 
         return [
             'nombre' => fake()->word(),
             'descripcion' => fake()->text('50'),
-            'imagen' => 'dietas.jpg', //$nombreImagen,
+            'imagen' => $nombreImagen,
             'tipo' => fake()->randomElement(['equilibrada','deficit','calorica','personalizada']),
             'usuario_id' => fake()->randomElement($usuarios)->id
         ];

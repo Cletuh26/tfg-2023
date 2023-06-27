@@ -52,8 +52,7 @@
                         <!-- Form Group (imagen)-->
                         <div class="col-md-12">
                             <label class="small mb-1" for="imagen">Imagen <small>(opcional)</small></label>
-                            <input class="form-control" id="imagen" name="imagen" type="file" accept=".jpeg, .jpg, .png"
-                                placeholder="Introduce el imagen">
+                            <input class="form-control" id="imagen" name="imagen" type="file" accept=".jpeg, .jpg, .png">
                             @error('imagen')
                                 <small class="text-danger">{{ $message }}</small>
                             @enderror

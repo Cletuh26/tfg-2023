@@ -17,14 +17,14 @@ class EjercicioModelFactory extends Factory
      */
     public function definition(): array
     {
-        // $imagen = fake()->image('storage/app/public/ejercicios');
+        $imagen = fake()->image('storage/app/public/ejercicios');
 
-        // $nombreImagen = basename($imagen);
+        $nombreImagen = basename($imagen);
         
         return [
             'nombre' => fake()->name(),
             'descripcion' => fake()->text(),
-            'imagen' => 'ejercicios.jpg',//$nombreImagen,
+            'imagen' => $nombreImagen,
             'tipo' => fake()->randomElement(['pierna','pecho','espalda','hombro','brazo']),
             'series' => fake()->numberBetween(1,5),
             'repeticiones' => fake()->numberBetween(8,12),

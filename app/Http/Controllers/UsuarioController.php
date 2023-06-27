@@ -75,7 +75,7 @@ class UsuarioController extends Controller
             'email' => 'required|unique:usuarios,email,'.$idUsuario,
             'telefono' => 'nullable',
             'fecha_nacimiento' => 'nullable',
-            'peso' => 'nullable|max:400',
+            'peso' => 'nullable|numeric|min:10|max:400',
             'altura' => 'nullable|numeric|min:0|max:300'
         ]);
 

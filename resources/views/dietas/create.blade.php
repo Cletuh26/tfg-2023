@@ -14,7 +14,7 @@
             <div class="row">
                 <div class="col-xl-12 m-auto">
                     <!-- Dieta card-->
-                    <form action="{{ route('dietas.store') }}" method="post">
+                    <form action="{{ route('dietas.store') }}" method="post" enctype="multipart/form-data">
                         @csrf
 
                         <!-- Form Group (nombre)-->
@@ -53,8 +53,7 @@
                         <!-- Form Group (imagen)-->
                         <div class="col-md-12">
                             <label class="small mb-1" for="imagen">Imagen <small>(opcional)</small></label>
-                            <input class="form-control" id="imagen" name="imagen" type="file" accept=".jpeg, .jpg, .png"
-                                placeholder="Introduce el imagen">
+                            <input class="form-control" id="imagen" name="imagen" type="file" accept=".jpeg, .jpg, .png">
                             @error('imagen')
                                 <small class="text-danger">{{ $message }}</small>
                             @enderror

@@ -53,8 +53,10 @@
                                         <small style='color:#ff4040;'>{{ $message }}</small><br>
                                     @enderror
 
-                                    <p class="small mb-5 pb-lg-2 mt-3"><a class="text-white-50" href="#!">¿Has
-                                            olvidado la contraseña?</a></p>
+                                    <p class="small mb-5 pb-lg-2 mt-3">
+                                        {{-- <a class="text-white-50" href="#!">¿Has
+                                            olvidado la contraseña?</a> --}}
+                                    </p>
 
                                     <button class="btn btn-outline-light btn-lg px-3" type="submit">Iniciar
                                         sesión</button>
