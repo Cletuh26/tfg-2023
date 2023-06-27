@@ -72,7 +72,6 @@ class UsuarioController extends Controller
         $datosNuevos = $request->validate([
             'nombre' => 'nullable',
             'apellidos' => 'nullable',
-            'email' => 'required|unique:usuarios,email,'.$idUsuario,
             'telefono' => 'nullable',
             'fecha_nacimiento' => 'nullable',
             'peso' => 'nullable|numeric|min:10|max:400',
@@ -82,7 +81,6 @@ class UsuarioController extends Controller
         $usuario = UsuarioModel::findOrFail($idUsuario);
         $usuario->nombre = $datosNuevos['nombre']??null;
         $usuario->apellidos = $datosNuevos['apellidos']??null;
-        $usuario->email = $datosNuevos['email'];
         $usuario->telefono = $datosNuevos['telefono']??null;
         $usuario->fecha_nacimiento = $datosNuevos['fecha_nacimiento']??null;
         $usuario->peso = $datosNuevos['peso']??null;

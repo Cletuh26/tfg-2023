@@ -60,7 +60,7 @@
                                 <div class="mb-3">
                                     <label class="small mb-1" for="email">Correo electrónico</label>
                                     <input class="form-control" id="email" name="email" type="email"
-                                        placeholder="Introduce tu email" value="{{ old('email', $usuario->email) }}">
+                                        placeholder="Introduce tu email" value="{{ old('email', $usuario->email) }}" disabled>
                                     @error('email')
                                         <small class="text-danger">{{ $message }}</small>
                                     @enderror
